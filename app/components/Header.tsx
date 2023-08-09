@@ -1,25 +1,32 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
 import { useState } from "react";
 
 const Header: React.FC = () => {
+
+  const pathname = usePathname();
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  
 
   const toggleMenu = () => {
-    if (window.innerWidth < 1024) {
-      console.log("size less than 1024 pixels");
+    if(window.innerWidth < 1024){
       setShowMenu((prevShowMenu) => !prevShowMenu);
-    } else {
-      setShowMenu(false);
-      console.log("size greater than 1024 pixels");
+      console.log('showMenu',showMenu)
     }
+    else{
+      setShowMenu(false);
+      console.log('false')
+    }
+    
   };
+
   return (
     <header
       className={`sticky top-0 z-50 bg-white dark:bg-gray-dark transition duration-300" [ngClass]="headerClass" sticky-header`}
     >
-      <div>
+ 
         <div className="flex items-center lg:justify-around justify-between lg:py-0 lg:px-0 p-4">
           <Link href="/" className=" hover:scale-110 duration-200">
             <img
@@ -32,13 +39,13 @@ const Header: React.FC = () => {
             <div
               onClick={toggleMenu}
               className={`overlay fixed inset-0 z-[51] bg-white dark:bg-black/60 lg:hidden  ${
-                showMenu ?"hidden" :""
+                showMenu ?"" :"hidden"
               }`}
             ></div>
             
             <div
               className={`menus ${
-                showMenu ? "":"overflow-y-auto ltr:!right-0 rtl:!left-0"
+                showMenu ?"overflow-y-auto ltr:!right-0 rtl:!left-0" :  ''
               }`}
             >
               <div className="border-b border-gray/10 ltr:text-right rtl:text-left lg:hidden">
@@ -69,7 +76,7 @@ const Header: React.FC = () => {
                     href="/"
                     passHref
                     className={`text-gray dark:text-white "  ${
-                      true ? "text-primary" : ""
+                      pathname === '/' ? "active" : ""
                     }`}
                   >
                     
@@ -80,17 +87,66 @@ const Header: React.FC = () => {
                   <Link
                     href="/our-fund"
                     className={`text-gray whitespace-nowrap dark:text-white" 
-                             ${"router.url === '/our-fund'" ? "" : ""}`}
+                             ${ pathname === '/our-fund' ? "active" : ""}`}
                   >
                     
                     Our Fund
                   </Link>
                 </li>
+                <li className="group relative" onClick={(e) => e.stopPropagation()}>
+            <a
+                className={`text-gray dark:text-white ${showMenu || "isSubmenuActive()" ? 'active' : ''}`}
+                href=""
+                onClick={() => setShowMenu(!showMenu)}
+            >
+                Services
+                <div className="transition duration-500 group-hover:rotate-180 ltr:ml-1 rtl:mr-1">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 9L12 15L10.25 13.5M5 9L7.33333 11"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </div>
+            </a>
+            {showMenu && (
+                <div className="submenu" onClick={() => setShowMenu(false)}>
+                    <a
+                        href="/borro-liqueous"
+                        className={pathname === '/borro-liqueous' ? 'active' : ''}
+                    >
+                        BORRO by Liqueous
+                    </a>
+                    <a
+                        href="/private-block"
+                        className={pathname === '/private-block' ? 'active' : ''}
+                    >
+                        Private Block Purchase
+                    </a>
+                    <a
+                        href="/equity-lines"
+                        className={pathname === '/equity-lines' ? 'active' : ''}
+                    >
+                        Equity Lines of Credit
+                    </a>
+                    <a
+                        href="/financial-solution"
+                        className={pathname === '/financial-solution' ? 'active' : ''}
+                    >
+                        Comprehensive Financial Solutions
+                    </a>
+                </div>
+            )}
+        </li>
+
                 <li>
                   <Link
                     href="/blog"
                     className={`text-gray whitespace-nowrap dark:text-white" 
-                             ${"router.url === '/our-fund'" ? "" : ""}`}
+                             ${pathname === '/blog' ? "text-primary" : ""}`}
                   >
                    
                     Blog
@@ -100,12 +156,30 @@ const Header: React.FC = () => {
                   <Link
                     href="/contact-us"
                     className={`text-gray whitespace-nowrap dark:text-white" 
-                             ${"router.url === '/our-fund'" ? "" : ""}`}
+                             ${pathname === '/contact-us' ? "text-primary" : ""}`}
                   >
                    
                     Contact Us
                   </Link>
                 </li>
+                <li
+                        className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-gray/30 ltr:before:-left-[2px] rtl:before:-right-[2px] lg:inline-flex">
+                       
+
+                    </li>
+                <li className="block lg:hidden">
+                        <Link href="{{loginUrl}}" className="text-gray cursor-pointer">Sign In
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/get-estimate">
+                          <button className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full">GET A QUOTE TODAY</button>
+                        </Link>
+                    </li>
+                    <li className="hidden lg:block">
+                        <Link href="{{loginUrl}}"  className="text-gray cursor-pointer">Sign In
+                        </Link>
+                    </li>
               </ul>
             </div>
            
@@ -138,7 +212,7 @@ const Header: React.FC = () => {
               </svg>
             </button>
         </div>
-      </div>
+   
     </header>
   );
 };
