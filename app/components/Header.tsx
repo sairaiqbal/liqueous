@@ -79,7 +79,6 @@ const Header: React.FC = () => {
                       pathname === '/' ? "active" : ""
                     }`}
                   >
-                    
                     Home
                   </Link>
                 </li>
@@ -89,8 +88,9 @@ const Header: React.FC = () => {
                     className={`text-gray whitespace-nowrap dark:text-white" 
                              ${ pathname === '/our-fund' ? "active" : ""}`}
                   >
-                    
+                
                     Our Fund
+           
                   </Link>
                 </li>
                 <li className="group relative" onClick={(e) => e.stopPropagation()}>
@@ -99,7 +99,9 @@ const Header: React.FC = () => {
                 href=""
                 onClick={() => setShowMenu(!showMenu)}
             >
+             
                 Services
+             
                 <div className="transition duration-500 group-hover:rotate-180 ltr:ml-1 rtl:mr-1">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -144,12 +146,13 @@ const Header: React.FC = () => {
 
                 <li>
                   <Link
-                    href="/blog"
+                    href="/blogs"
                     className={`text-gray whitespace-nowrap dark:text-white" 
-                             ${pathname === '/blog' ? "text-primary" : ""}`}
+                             ${pathname === '/blogs' ? "text-primary" : ""}`}
                   >
-                   
+              
                     Blog
+               
                   </Link>
                 </li>
                 <li>
@@ -158,8 +161,9 @@ const Header: React.FC = () => {
                     className={`text-gray whitespace-nowrap dark:text-white" 
                              ${pathname === '/contact-us' ? "text-primary" : ""}`}
                   >
-                   
+                  
                     Contact Us
+                   
                   </Link>
                 </li>
                 <li
@@ -173,7 +177,7 @@ const Header: React.FC = () => {
                     </li>
                     <li>
                         <Link href="/get-estimate">
-                          <button className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full">GET A QUOTE TODAY</button>
+                          <button type="button" className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full">GET A QUOTE TODAY</button>
                         </Link>
                     </li>
                     <li className="hidden lg:block">

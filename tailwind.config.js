@@ -26,7 +26,7 @@ module.exports = {
         xl: '1142px',
     },
     fontFamily: {
-        mulish: ['Mulish', 'sans-serif'],
+        mulish: ['Mulish', 'sans-serif' ] ,
     },
     colors: {
         transparent: 'transparent',

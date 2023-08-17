@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { countries } from "../Utils/countries";
 import { useForm } from "react-hook-form";
 
-
+let renders = 0;
 const ContactUs = () => {
+    renders++;
+    console.log(renders)
     type FormInputs = {
         name: string;
         email: string;
@@ -15,6 +17,7 @@ const ContactUs = () => {
         register,
         handleSubmit,
         formState: { errors },
+        watch
     } = useForm({
         defaultValues: {
             name: "",
@@ -23,12 +26,19 @@ const ContactUs = () => {
         }
 
     });
+
+    const [showModal, setShowModal] = useState<boolean>(false);
     const openCountryModal = () => {
         setShowModal(true);
         document.body.style.overflow = "hidden";
     };
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const closeCountryModal = () => {
+        setShowModal(false);
+        document.body.style.overflow = "auto";
+    };
+
     return (
+        <div className="-mt-[82px] flex-grow overflow-x-hidden lg:-mt-[106px]">
         <div className="overflow-x-hidden  bg-white dark:bg-gray-dark">
             <div className="overflow-hidden   pt-[82px] sm:-mx-[250px]  lg:-mx-[150px] lg:pt-[106px]">
                 <div className="relative ">
@@ -288,7 +298,7 @@ const ContactUs = () => {
                                 Phone
                             </label>
                             <div className="flex gap-2 justify-around">
-                                <button onClick={openCountryModal} className="w-[150px] rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary">
+                                <button type="button" onClick={openCountryModal} className="w-[150px] rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary">
                                     {/* {{ selectedCountry?.flag }} {{ selectedCountry?.dial_code }} */}
                                 </button>
                                 <input
@@ -311,7 +321,7 @@ const ContactUs = () => {
                                                     <h2 className="  text-black font-bold text-xl ">Select Area Code</h2>
                                                 </div>
                                                 <div className="flex justify-end">
-                                                    <button className="">
+                                                    <button type='button' onClick={closeCountryModal} className="">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray">
                                                             <path d="M6.697 4.575L4.575 6.697 9.88 12l-5.304 5.303 2.122 2.122L12 14.12l5.303 5.304 2.122-2.122L14.12 12l5.304-5.303-2.122-2.122L12 9.88 6.697 4.575z"></path>
                                                         </svg>
@@ -357,8 +367,9 @@ const ContactUs = () => {
 
                         <div className="mt-6 text-center ltr:lg:text-right rtl:lg:text-left flex justify-center">
                             <button onClick={handleSubmit((data) => {
+
                                 console.log(data)
-                            })} type="button" disabled={false}
+                            })} type="submit" disabled={false}
                                 className="w-5/12 btn bg-primary capitalize text-white p-3 dark:bg-primary dark:text-white dark:hover:bg-primary rounded-full disabled:bg-gray">
                                 SUBMIT
                                 <svg aria-hidden="true" role="status"
@@ -438,6 +449,7 @@ const ContactUs = () => {
         </div> --> */}
             </div>
         </div >
+        </div>
     );
 };
 
