@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={mulish.className}>
         <div className="flex min-h-screen flex-col  bg-white bg-gradient-to-r from-[#FCF1F4] to-[#EDFBF9]    text-base font-normal text-gray antialiased dark:bg-[#101926] dark:from-transparent dark:to-transparent">
            <Header />
-          {children}
+        {children}  
           <Footer />
         </div>
       </body>

@@ -96,8 +96,8 @@ const Header: React.FC = () => {
                 <li className="group relative" onClick={(e) => e.stopPropagation()}>
             <a
                 className={`text-gray dark:text-white ${showMenu || "isSubmenuActive()" ? 'active' : ''}`}
-                href=""
-                onClick={() => setShowMenu(!showMenu)}
+                
+                
             >
              
                 Services
@@ -114,8 +114,8 @@ const Header: React.FC = () => {
                     </svg>
                 </div>
             </a>
-            {showMenu && (
-                <div className="submenu" onClick={() => setShowMenu(false)}>
+            { (
+                <div className="submenu">
                     <a
                         href="/borro-liqueous"
                         className={pathname === '/borro-liqueous' ? 'active' : ''}
