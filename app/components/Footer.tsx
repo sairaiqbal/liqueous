@@ -7,9 +7,9 @@ const Footer = () => {
       <div className="overflow-x-hidden">
         <section className="bg-gradient-to-r from-[#dbeafe] p-10 dark:bg-none">
           <div className="relative z-[1] text-center text-white ">
-            <h2 className="text-4xl font-extrabold leading-normal sm:text-6xl lg:text-[50px] lg:leading-[60px]">
+          <h2 className="text-4xl font-bold leading-normal sm:text-6xl lg:text-[50px] lg:leading-[60px]">
               <span className="text-primary text-xl ">
-                SAME DAY QUOTES
+                SAME DAY QUOTES &nbsp;
                 <br className="lg:hidden md:hidden" />
                 <span className="lg:inline md:inline">NO OBLIGATIONS</span>
               </span>

@@ -2,12 +2,28 @@
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const Header: React.FC = () => {
 
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   
 
   const toggleMenu = () => {
@@ -24,7 +40,10 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white dark:bg-gray-dark transition duration-300" [ngClass]="headerClass" sticky-header`}
+      className={`sticky top-0 z-50 bg-white dark:bg-gray-dark transition duration-300" ${
+        hasScrolled ? 'shadow-md' : ''
+      }`}
+ 
     >
  
         <div className="flex items-center lg:justify-around justify-between lg:py-0 lg:px-0 p-4">
