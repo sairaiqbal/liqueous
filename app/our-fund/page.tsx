@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const ourFund = () => {
@@ -15,7 +16,7 @@ const ourFund = () => {
                 <div className="flex justify-center">
                     <img src="/assets/images/Graphics.svg" className="z-0"/>
                 </div>
-                <div className="absolute inset-0 top-10 flex justify-center text-center  mt-[40rem] ">
+                <div className="absolute inset-0 top-10 flex justify-center text-center   md:mt-[31rem] lg:mt-[40rem] mt-[10rem] ">
 
                     <div className=" lg:w-[77%] lg:px-14 px-0 w-full dark:bg-black ">
                         <div className="heading mb-0 ">
@@ -36,7 +37,7 @@ const ourFund = () => {
                             and our
                             transaction partners.
                         </p>
-                        {/* <a routerLink="/get-estimate">   <button type="button" className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></a> */}
+                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                     </div>
 
                 </div>
@@ -47,7 +48,7 @@ const ourFund = () => {
         <div className="container lg:mb-[100px] lg:mt-0  md:mt-0 mt-[20rem]">
             <div className="grid items-center gap-2 md:grid-cols-3 lg:grid-cols-2 xl:items-start">
                 <div className="lg:order-2 order:1 md:col-span-2 lg:col-auto">
-                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right lg:p-10 p-4 ">
+                    <div className="text-center font-semibold lg:text-left md:text-left lg:p-10 p-4 ">
                         <svg width="41" height="25" viewBox="0 0 41 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M28.0418 0.5L32.6287 5.08L22.8541 14.84L14.8421 6.84L0 21.68L2.82421 24.5L14.8421 12.5L22.8541 20.5L35.4729 7.92L40.0597 12.5V0.5H28.0418Z"
@@ -69,7 +70,7 @@ const ourFund = () => {
                             reducing operational costs. </p>
 
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        {/* <a routerLink="/get-estimate"><button type="button" className="btn mt-5  px-9 text-white rounded-full">Apply Now</button></a> */}
+                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                     </div>
                 </div>
                 <div className="lg:order-1 mx-auto  order:2 md:mx-0 ">
@@ -85,7 +86,7 @@ const ourFund = () => {
         <div className="container lg:mb-[100px] mb-[50px]">
         <div className="grid items-center gap-2 md:grid-cols-3 lg:grid-cols-2 xl:items-start">
                 <div className="order-1 md:order-1 md:col-span-2 lg:col-auto">
-                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right lg:p-10 p-4 lg:pt-20">
+                    <div className="text-center font-semibold lg:text-left md:text-left lg:p-10 p-4 lg:pt-20">
                         <svg width="41" height="25" viewBox="0 0 41 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M28.0418 0.5L32.6287 5.08L22.8541 14.84L14.8421 6.84L0 21.68L2.82421 24.5L14.8421 12.5L22.8541 20.5L35.4729 7.92L40.0597 12.5V0.5H28.0418Z"
@@ -107,7 +108,7 @@ const ourFund = () => {
                             opportunities.
                         </p>
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        {/* <a routerLink="/get-estimate"><button type="button" className="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></a> */}
+                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                     </div>
                 </div>
                 <div className="order-2 mx-auto  md:order-2 md:mx-0">
@@ -124,7 +125,7 @@ const ourFund = () => {
         <div className="container lg:mb-[100px]">
             <div className="grid items-center gap-2 md:grid-cols-3 lg:grid-cols-2 xl:items-start">
                 <div className="lg:order-2 order:1 md:col-span-2 lg:col-auto">
-                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right lg:p-10 p-4 ">
+                    <div className="text-center font-semibold lg:text-left md:text-left lg:p-10 p-4 ">
                         <svg width="41" height="25" viewBox="0 0 41 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M28.0418 0.5L32.6287 5.08L22.8541 14.84L14.8421 6.84L0 21.68L2.82421 24.5L14.8421 12.5L22.8541 20.5L35.4729 7.92L40.0597 12.5V0.5H28.0418Z"
@@ -147,7 +148,7 @@ const ourFund = () => {
                         </p>
 
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        {/* <a routerLink="/get-estimate"> <button type="button" className="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></a> */}
+                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                     </div>
                 </div>
                 <div className="lg:order-1 mx-auto  order:2 md:mx-0">
@@ -163,7 +164,7 @@ const ourFund = () => {
         <div className="container  lg:mb-[100px] mb-[50px]">
             <div className="grid items-center gap-2 md:grid-cols-3 lg:grid-cols-2 xl:items-start">
                 <div className="order-1 md:order-1 md:col-span-2 lg:col-auto">
-                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right lg:p-10 p-4  ">
+                    <div className=" font-semibold  lg:p-10 p-4 text-center lg:text-left md:text-left">
                         <svg width="41" height="25" viewBox="0 0 41 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M28.0418 0.5L32.6287 5.08L22.8541 14.84L14.8421 6.84L0 21.68L2.82421 24.5L14.8421 12.5L22.8541 20.5L35.4729 7.92L40.0597 12.5V0.5H28.0418Z"
@@ -186,7 +187,7 @@ const ourFund = () => {
                         </p>
                         
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        {/* <a routerLink="/get-estimate"> <button type="button" className="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></a> */}
+                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                     </div>
                 </div>
                 <div className="order-2 mx-auto  md:order-2 md:mx-0">
@@ -252,7 +253,7 @@ const ourFund = () => {
                                 className="text-secondary dark:text-white">exceptional</span> value to our partners. Join us
                             on this
                             exciting journey towards a more sustainable future.</p>
-                            {/* <a routerLink="/get-estimate">  <button type="button" className="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></a> */}
+                            <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                     </div>
                 </div>
             </div>
