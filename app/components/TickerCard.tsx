@@ -16,6 +16,7 @@ interface TickerCardProps {
 }
 
 const TickerCard:React.FC<TickerCardProps> = ({ ticker, colorClass}) => {
+  
   return (
     <Link href={`/quote/US/${ticker?.name}`}>
             <div className={`cursor-pointer w-64 p-1.5 bg-white border border-white rounded-full shadow dark:bg-gray-800 dark:border-gray-700 flex mr-2 ml-2 opacity-70 hover:scale-110 hover:border-primary duration-200`}>

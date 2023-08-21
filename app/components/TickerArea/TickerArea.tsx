@@ -1,7 +1,8 @@
-'use client'
-import React, { useEffect, useState } from 'react';
+
 import TickerCard from '../TickerCard';
 import SearchBar from '../SearchBar/SearchBar';
+import getTickerData from '@/app/Utils/getTickerData';
+
 
 interface Ticker {
   alphabet: string,
@@ -12,26 +13,18 @@ interface Ticker {
   delta: string;
 }
 
-const TickerArea = () => {
-  
 
-  const [tickerData, setTickerData] = useState<Ticker[]>([]);
-  useEffect(() => {
-    
-    const fetchTickerData = async () => {
-        try {
-            const response = await fetch('https://liqueous.logixsy.com/api/quote/index');
-            const ticker = await response.json();
-            setTickerData(ticker.data);
-            
-        } catch (error) {
-            console.error('Error fetching ticker data:', error);
-        }
-    };
-  
-  fetchTickerData();
-  
-  }, []);
+ 
+const TickerArea = async () => {
+
+       
+
+  const tickerData:Ticker[] = await getTickerData();
+ 
+
+       
+
+
   return (
     <div >
       <div className="relative">

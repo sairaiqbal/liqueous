@@ -4,6 +4,7 @@ interface BlogProps {
   params: string;
 }
 
+
 const Blog:React.FC<BlogProps> = ({params}) => {
   return (
     <div>

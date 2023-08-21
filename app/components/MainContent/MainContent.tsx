@@ -1,8 +1,19 @@
+'use client'
+
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { CSSProperties } from "react";
 import MainForm from "./MainForm";
+import AOS from "aos";
 const MainContent = () => {
+   useEffect(() => {
+    // Initialize AOS once the app is mounted
+    AOS.init({
+      duration: 1000, // Animation duration
+      once: true, // Only animate once
+    });
+  }, []);
+
   const boxShadowStyle: CSSProperties = {
     boxShadow: "-20px 30px 70px rgba(219, 222, 225, 0.4)",
   };

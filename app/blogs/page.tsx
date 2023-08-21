@@ -60,7 +60,7 @@ const Blog = () => {
                 
                 <div className="grid gap-x-[30px] gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                 {/* data-aos="fade-up" data-aos-duration="1000" */}
-                    <div >
+                    <div data-aos="fade-up" data-aos-duration="1000" >
                         <div
                             className="relative rounded-3xl border border-transparent bg-white transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:bg-gray-dark">
                             <Link href="/blogs/5-Reasons-why-stock-loans-are-a-smart-choice" className="absolute top-0 h-full w-full ltr:left-0 rtl:right-0"></Link>
@@ -80,8 +80,8 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
-                    {/* data-aos="fade-up" data-aos-duration="1000" */}
-                    <div >
+                    {/*  */}
+                    <div data-aos="fade-up" data-aos-duration="1000">
                         <div
                             className="relative rounded-3xl border border-transparent bg-white transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:bg-gray-dark">
                             <Link href="/blogs/How-to-Use-Stock-Loans-to-Build-Your-Investment-Portfolio" className="absolute top-0 h-full w-full ltr:left-0 rtl:right-0"></Link>
@@ -102,8 +102,8 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
-                    {/* data-aos="fade-up" data-aos-duration="1000" */}
-                    <div >
+                    {/*  */}
+                    <div data-aos="fade-up" data-aos-duration="1000">
                         <div
                             className="relative rounded-3xl border border-transparent bg-white transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:bg-gray-dark">
                             <Link href="/blog/What-is-a-Stock-Loan" className="absolute top-0 h-full w-full ltr:left-0 rtl:right-0"></Link>
