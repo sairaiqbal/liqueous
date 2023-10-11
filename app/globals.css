@@ -18,8 +18,8 @@
       @apply mb-3 text-lg font-extrabold text-primary sm:mb-4;
   }
   .heading h4 {
-      @apply text-2xl font-extrabold text-black dark:text-white sm:text-3xl lg:text-[40px] lg:!leading-[50px];
-  }
+    @apply text-2xl  text-black dark:text-white sm:text-3xl lg:text-[40px] lg:!leading-[50px];
+}
   .portfolio-filter .filter.active button {
       @apply bg-primary text-white;
   }
