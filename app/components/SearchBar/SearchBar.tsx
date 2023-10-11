@@ -23,7 +23,7 @@ const SearchBar = () => {
     const fetchData = async (value: string) => {
         // Implement your API fetch logic here based on the input value
         // For example:
-        const response = await fetch(`https://liqueous.logixsy.com/api/quote/tickers?search=${value}`);
+        const response = await fetch(`/api/quote/tickers?search=${value}`);
         const data = await response.json();
        
         setSearchResults(data.data); // Update search results with fetched data
