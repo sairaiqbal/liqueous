@@ -1,394 +1,434 @@
-"use client";
-import React, { useState } from "react";
-import { countries } from "../Utils/countries";
-import { useForm } from "react-hook-form";
+
+import React from "react";
+import ContactForm from "./contactForm";
+import Link from "next/link";
 
 let renders = 0;
 const ContactUs = () => {
-    renders++;
-    console.log(renders)
-    type FormInputs = {
-        name: string;
-        email: string;
+  renders++;
+  console.log(renders);
 
-    }
-    // Form handling 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        watch
-    } = useForm({
-        defaultValues: {
-            name: "",
-            email: "",
-            phone: "",
-        }
+  return (
+    <div className="-mt-[82px] flex-grow overflow-x-hidden lg:-mt-[106px]">
+      <div className="overflow-x-hidden  bg-white dark:bg-gray-dark">
+        <div className="overflow-hidden   pt-[82px] sm:-mx-[250px]  lg:-mx-[150px] lg:pt-[106px]">
+          <div className="relative ">
+            <img
+              src="/assets/images/banner-lefticon.png"
+              alt="banner-lefticon"
+              className="absolute left-0 top-20 sm:left-[250px] lg:left-[150px]"
+            />
+            <img
+              src="/assets/images/banner-rightIcon.png"
+              alt="banner-rightIcon"
+              className="absolute right-0 -top-4 sm:right-[250px] lg:right-[150px]"
+            />
+            <div className="container  pt-14">
+              <div className="heading text-center mb-6">
+                <h4 className=""> Reach Out Today for</h4>
+                <h4>
+                  {" "}
+                  <span className="text-primary"> Customized </span> Financial
+                  Solutions
+                </h4>
+              </div>
+              <div className="flex justify-center">
+                <svg
+                  width="29"
+                  height="29"
+                  viewBox="0 0 29 29"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M23.318 10.364L24.938 6.8L28.5 5.182L24.938 3.563L23.318 0L21.7 3.563L18.136 5.182L21.7 6.8L23.318 10.364ZM13.602 11.012L10.364 3.886L7.125 11.011L0 14.25L7.125 17.489L10.364 24.614L13.6 17.489L20.725 14.25L13.602 11.012ZM23.318 18.137L21.7 21.7L18.138 23.319L21.7 24.938L23.318 28.5L24.937 24.938L28.5 23.318L24.938 21.7L23.318 18.137Z"
+                    fill="#5C96FD"
+                  />
+                </svg>
+              </div>
 
-    });
-
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const openCountryModal = () => {
-        setShowModal(true);
-        document.body.style.overflow = "hidden";
-    };
-    const closeCountryModal = () => {
-        setShowModal(false);
-        document.body.style.overflow = "auto";
-    };
-
-    return (
-        <div className="-mt-[82px] flex-grow overflow-x-hidden lg:-mt-[106px]">
-            <div className="overflow-x-hidden  bg-white dark:bg-gray-dark">
-                <div className="overflow-hidden   pt-[82px] sm:-mx-[250px]  lg:-mx-[150px] lg:pt-[106px]">
-                    <div className="relative ">
-                        <img
-                            src="/assets/images/banner-lefticon.png"
-                            alt="banner-lefticon"
-                            className="absolute left-0 top-20 sm:left-[250px] lg:left-[150px]"
-                        />
-                        <img
-                            src="/assets/images/banner-rightIcon.png"
-                            alt="banner-rightIcon"
-                            className="absolute right-0 -top-4 sm:right-[250px] lg:right-[150px]"
-                        />
-                        <div className="container  pt-14">
-                            <div className="heading text-center mb-6">
-                                <h4 className=""> Reach Out Today for</h4>
-                                <h4>
-                                    {" "}
-                                    <span className="text-primary"> Customized </span> Financial
-                                    Solutions
-                                </h4>
-                            </div>
-                            <div className="flex justify-center">
-                                <svg
-                                    width="29"
-                                    height="29"
-                                    viewBox="0 0 29 29"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M23.318 10.364L24.938 6.8L28.5 5.182L24.938 3.563L23.318 0L21.7 3.563L18.136 5.182L21.7 6.8L23.318 10.364ZM13.602 11.012L10.364 3.886L7.125 11.011L0 14.25L7.125 17.489L10.364 24.614L13.6 17.489L20.725 14.25L13.602 11.012ZM23.318 18.137L21.7 21.7L18.138 23.319L21.7 24.938L23.318 28.5L24.937 24.938L28.5 23.318L24.938 21.7L23.318 18.137Z"
-                                        fill="#5C96FD"
-                                    />
-                                </svg>
-                            </div>
-
-                            <div className=" flex justify-center text-center items-end ">
-                                <div className=" lg:w-[77%] lg:px-14 lg:pb-4 pb-2 px-2 w-full dark:bg-black ">
-                                    <p className="pt-30 lg:pt-6">
-                                        We understand that navigating the financial landscape can be
-                                        daunting. Whether you’re considering an equity line of credit,
-                                        exploring a private block purchase, or seeking comprehensive
-                                        financial solutions, our team at Liqueous is ready to help.
-                                        We’re committed to providing tailored solutions that align
-                                        with your unique financial needs and business goals.
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex justify-center ">
-                                <div className="grid items-center gap-16 lg:grid-cols-2 xl:items-start pt-10 ">
-                                    <div className="lg:order-2 order:1 md:col-span-2 lg:col-auto flex justify-center ">
-                                        <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right  ">
-                                            <div className=" flex justify-center items-center  lg:w-[28rem] h-[23rem] w-[22rem]  bg-[#f3f3fe]  rounded-xl ">
-                                                <div className="lg:w-[24rem] h-[19rem] w-[18rem] bg-white rounded-xl p-7 pt-10">
-                                                    <div className="flex justify-center lg:block">
-                                                        <svg
-                                                            width="29"
-                                                            height="29"
-                                                            viewBox="0 0 29 29"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <path
-                                                                d="M14.25 0.5C11.4316 0.5 8.67653 1.33575 6.33313 2.90156C3.98973 4.46737 2.16327 6.69291 1.08472 9.29676C0.00617421 11.9006 -0.276023 14.7658 0.273816 17.53C0.823656 20.2943 2.18084 22.8334 4.17374 24.8263C6.16663 26.8192 8.70574 28.1764 11.47 28.7262C14.2342 29.276 17.0994 28.9938 19.7032 27.9153C22.3071 26.8367 24.5326 25.0103 26.0984 22.6669C27.6643 20.3235 28.5 17.5684 28.5 14.75C28.4889 10.9741 26.984 7.35596 24.314 4.68597C21.644 2.01597 18.0259 0.51108 14.25 0.5ZM17.1 20.022C16.9324 20.119 16.747 20.1812 16.5548 20.205C16.3627 20.2288 16.1677 20.2137 15.9815 20.1605C15.7953 20.1073 15.6218 20.0171 15.4712 19.8954C15.3206 19.7737 15.1961 19.6229 15.105 19.452L12.968 15.462C12.8527 15.2431 12.803 14.9955 12.825 14.749V7.625C12.825 7.24707 12.9751 6.88461 13.2424 6.61737C13.5096 6.35013 13.8721 6.2 14.25 6.2C14.6279 6.2 14.9904 6.35013 15.2576 6.61737C15.5249 6.88461 15.675 7.24707 15.675 7.625V14.325L17.67 18.025C17.8327 18.3705 17.8646 18.7633 17.7598 19.1305C17.655 19.4977 17.4206 19.8145 17.1 20.022Z"
-                                                                fill="#5C96FD"
-                                                            />
-                                                        </svg>
-                                                    </div>
-
-                                                    <h5 className="my-5 text-2xl font-semibold tracking-tight text-black dark:text-white">
-                                                        Our Hours
-                                                    </h5>
-
-                                                    <p className="mb-2 font-normal text-gray dark:text-gray-400">
-                                                        We operate Monday to Friday, from 9:00 AM{" "}
-                                                    </p>
-                                                    <p className="mb-2 font-normal text-gray dark:text-gray-400">
-                                                        {" "}
-                                                        to 5:00 PM Eastern Time. We are closed on
-                                                    </p>
-                                                    <p className="mb-3 font-normal text-gray dark:text-gray-400">
-                                                        {" "}
-                                                        public holidays.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="lg:order-1 order:2 md:col-span-2 lg:col-auto flex justify-center ">
-                                        <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right  ">
-                                            <div className=" flex justify-center items-center  lg:w-[28rem] h-[23rem] w-[22rem]  bg-[#f3f3fe] rounded-xl  ">
-                                                <div className="lg:w-[24rem] h-[19rem] w-[18rem] bg-white rounded-xl p-7 pt-10">
-                                                    <div className="flex justify-center lg:block">
-                                                        <svg
-                                                            width="24"
-                                                            height="29"
-                                                            viewBox="0 0 24 29"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <path
-                                                                d="M11.9781 0.5C8.95571 0.503441 6.05808 1.70561 3.92091 3.84278C1.78374 5.97995 0.581566 8.87759 0.578125 11.9C0.578125 16.538 3.94513 20.39 7.51213 24.467C8.64112 25.758 9.81213 27.093 10.8491 28.444C10.9822 28.6167 11.1532 28.7565 11.3489 28.8527C11.5445 28.9489 11.7596 28.9989 11.9776 28.9989C12.1956 28.9989 12.4107 28.9489 12.6064 28.8527C12.802 28.7565 12.973 28.6167 13.1061 28.444C14.1461 27.093 15.3151 25.758 16.4431 24.467C20.0111 20.39 23.3781 16.538 23.3781 11.9C23.3747 8.87759 22.1725 5.97995 20.0353 3.84278C17.8982 1.70561 15.0005 0.503441 11.9781 0.5ZM11.9781 16.175C11.1326 16.175 10.3061 15.9243 9.60306 15.4545C8.90004 14.9848 8.3521 14.3171 8.02854 13.536C7.70498 12.7548 7.62032 11.8953 7.78527 11.066C7.95022 10.2367 8.35737 9.47499 8.95524 8.87712C9.55311 8.27925 10.3148 7.87209 11.1441 7.70714C11.9734 7.54219 12.8329 7.62685 13.6141 7.95041C14.3953 8.27398 15.0629 8.82192 15.5327 9.52494C16.0024 10.228 16.2531 11.0545 16.2531 11.9C16.2531 12.4614 16.1425 13.0173 15.9277 13.536C15.7129 14.0546 15.398 14.5259 15.001 14.9229C14.604 15.3199 14.1328 15.6347 13.6141 15.8496C13.0954 16.0644 12.5395 16.175 11.9781 16.175Z"
-                                                                fill="#5C96FD"
-                                                            />
-                                                        </svg>
-                                                    </div>
-
-                                                    <h5 className="my-5 text-2xl font-semibold tracking-tight text-black dark:text-white">
-                                                        Our Office
-                                                    </h5>
-
-                                                    <p className="mb-2 font-normal text-gray dark:text-gray-400">
-                                                        Liqueous LP
-                                                    </p>
-                                                    <p className="mb-2 font-normal text-gray dark:text-gray-400">
-                                                        {" "}
-                                                        8 THE GRN NUM 15337
-                                                    </p>
-                                                    <p className="mb-3 font-normal text-gray dark:text-gray-400">
-                                                        {" "}
-                                                        DOVER, DE 19901{" "}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              <div className=" flex justify-center text-center items-end ">
+                <div className=" lg:w-[77%] lg:px-14 lg:pb-4 pb-2 px-2 w-full dark:bg-black ">
+                  <p className="pt-30 lg:pt-6">
+                    We understand that navigating the financial landscape can be
+                    daunting. Whether you’re considering an equity line of
+                    credit, exploring a private block purchase, or seeking
+                    comprehensive financial solutions, our team at Liqueous is
+                    ready to help. We’re committed to providing tailored
+                    solutions that align with your unique financial needs and
+                    business goals.
+                  </p>
                 </div>
-                <section>
-                    <div className="container my-[100px]">
-                        <div className="heading text-center">
-                            <div className="flex justify-center">
-                                <svg
-                                    width="41"
-                                    height="25"
-                                    viewBox="0 0 41 25"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        d="M28.0418 0.5L32.6287 5.08L22.8541 14.84L14.8421 6.84L0 21.68L2.82421 24.5L14.8421 12.5L22.8541 20.5L35.4729 7.92L40.0597 12.5V0.5H28.0418Z"
-                                        fill="#6C4FFE"
-                                    />
-                                </svg>
-                            </div>
-
-                            <h4>Get in Touch</h4>
-
-                            <p> To discuss your financial needs or to learn more about</p>
-                            <p> our services, please reach out to us: </p>
-                        </div>
-                        <div className="flex justify-center">
-                            <div className="grid items-center gap-8 lg:gap-16 md:grid-cols-1 lg:grid-cols-1 xl:items-start ">
-                                <div className="lg:order-2 order:1 md:col-span-2 lg:col-auto flex justify-center ">
-                                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right  ">
-                                        <div className=" flex justify-center items-center   h-[9rem] w-[22rem] lg:w-[28rem] bg-[#f3f3fe]  rounded-xl ">
-                                            <div className=" h-[5rem] w-[18rem] lg:w-[24rem] bg-white rounded-xl p-5">
-                                                <div className="flex justify-center items-center">
-                                                    <svg
-                                                        width="34"
-                                                        height="27"
-                                                        viewBox="0 0 34 27"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M30.6 1.24412e-09H3.4C2.50416 -2.50359e-06 1.64489 0.355321 1.01068 0.988028C0.376476 1.62073 0.0191185 2.47916 0.017 3.375L0 23.625C0.00659868 24.5224 0.367723 25.3808 1.00463 26.013C1.64154 26.6452 2.50258 27 3.4 27H30.6C31.4974 27 32.3585 26.6452 32.9954 26.013C33.6323 25.3808 33.9934 24.5224 34 23.625V3.375C33.9934 2.4776 33.6323 1.61921 32.9954 0.986982C32.3585 0.354755 31.4974 -2.4259e-05 30.6 1.24412e-09ZM30.6 6.75L17 15.188L3.4 6.75V3.375L17 11.813L30.6 3.375V6.75Z"
-                                                            fill="#5C96FD"
-                                                        />
-                                                    </svg>
-                                                    <p className="mb-3 font-normal text-gray dark:text-gray-400 pl-2 pt-3">
-                                                        info@liqueous.com
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex justify-center">
-                            <div className="mt-10 text-center">
-                                <p className=" font-normal text-gray dark:text-gray-400 ">
-                                    Alternatively, you can fill out the contact form below, and one
-                                    of{" "}
-                                </p>
-                                <p className=" mb-3font-normal text-gray dark:text-gray-400 ">
-                                    our <span className="text-secondary">representatives</span> will
-                                    get back to you as soon as possible.
-                                </p>
-                            </div>
-                        </div>
+              </div>
+              <div className="relative container  mt-[100px] mb-[50px] lg:mb-0  ">
+                <div className="relative ">
+                  <div className="container   flex justify-center lg:my-[100px]">
+                    <div className="lg:h-[15rem] h-[26rem] w-[64rem] bg-[#f3f3fe] rounded-xl flex justify-center items-center dark:border-2 dark:border-gray dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none  ">
+                      <div className="flex h-full w-full justify-between "></div>
                     </div>
-                </section>
-                <div className="relative container ">
-                    <div className="relative ">
-                        <div className="container h-[470px]  lg:w-4/5 bg-gradient-to-r to-transparent rounded-3xl lg:py-[50px] flex justify-around">
-                            <div className="flex h-full w-full justify-between ">
-                                <div className="h-full w-36 relative  left-[15%] flex items-center  ">
-                                    <img src="/assets/images/Graphic - Left.png" />
-                                </div>
-                                <div className=" w-36 relative  top-[-50%] left-[-15%] flex items-end h-screen   ">
-                                    <svg
-                                        width="252"
-                                        height="252"
-                                        viewBox="0 0 252 252"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M111.723 14.1421C119.533 6.33165 132.197 6.33165 140.007 14.1421L237.588 111.723C245.398 119.533 245.398 132.197 237.588 140.007L140.007 237.588C132.197 245.398 119.533 245.398 111.723 237.588L14.1421 140.007C6.33162 132.197 6.33162 119.533 14.1421 111.723L111.723 14.1421Z"
-                                            fill="white"
-                                        />
-                                        <path
-                                            d="M177.355 177.095C148.918 205.532 102.812 205.532 74.3748 177.095C45.9375 148.657 45.9373 102.552 74.3748 74.1143C102.812 45.677 148.918 45.677 177.355 74.1143C205.793 102.552 205.792 148.657 177.355 177.095Z"
-                                            fill="#C8C2FC"
-                                        />
-                                        <path
-                                            d="M56.671 106.734C49.694 131.18 55.7385 158.458 74.8564 177.576C103.028 205.748 148.918 205.532 177.355 177.095C205.792 148.657 206.008 102.767 177.837 74.5959L126.347 126.086L56.671 106.734Z"
-                                            fill="#6C4FFE"
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
+                  </div>
+                </div>
+
+                <div className=" container absolute top-0 left-0 z-10 flex justify-center pt-8 ">
+                  <div className="lg:h-[11rem] h-[22rem] lg:w-[58rem] rounded-xl bg-white flex justify-center items-center w-[18rem] dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none   ">
+                    <div className="w-11/12  ">
+                      <div className="lg:flex justify-between w-full ">
+                        <div className="flex items-center justify-center ">
+                          <div className="flex-auto w-75  text-center lg:text-start">
+                            <h2 className="text-4xl font-extrabold leading-normal sm:text-6xl lg:text-[50px] lg:leading-[60px]">
+                              <span className="text-primary text-xl">
+                                Call us Today,{" "}
+                              </span>{" "}
+                            </h2>
+                            <h2 className="text-2xl font-extrabold text-black dark:text-white">
+                              Our{" "}
+                              <span className="text-secondary">Toll Free</span>{" "}
+                              Number is:
+                            </h2>
+                          </div>
                         </div>
-                        <div className=" container  absolute top-0 left-0 z-10  flex justify-center mt-10 "></div>
+                        <div className="flex items-center w-25 ">
+                          <svg
+                            fill="#5c96fd"
+                            height="50px"
+                            width="50px"
+                            version="1.1"
+                            id="Capa_1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlnsXlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 473.806 473.806"
+                            xmlSpace="preserve"
+                          >
+                            <g>
+                              <g>
+                                <path
+                                  d="M374.456,293.506c-9.7-10.1-21.4-15.5-33.8-15.5c-12.3,0-24.1,5.3-34.2,15.4l-31.6,31.5c-2.6-1.4-5.2-2.7-7.7-4
+			c-3.6-1.8-7-3.5-9.9-5.3c-29.6-18.8-56.5-43.3-82.3-75c-12.5-15.8-20.9-29.1-27-42.6c8.2-7.5,15.8-15.3,23.2-22.8
+			c2.8-2.8,5.6-5.7,8.4-8.5c21-21,21-48.2,0-69.2l-27.3-27.3c-3.1-3.1-6.3-6.3-9.3-9.5c-6-6.2-12.3-12.6-18.8-18.6
+			c-9.7-9.6-21.3-14.7-33.5-14.7s-24,5.1-34,14.7c-0.1,0.1-0.1,0.1-0.2,0.2l-34,34.3c-12.8,12.8-20.1,28.4-21.7,46.5
+			c-2.4,29.2,6.2,56.4,12.8,74.2c16.2,43.7,40.4,84.2,76.5,127.6c43.8,52.3,96.5,93.6,156.7,122.7c23,10.9,53.7,23.8,88,26
+			c2.1,0.1,4.3,0.2,6.3,0.2c23.1,0,42.5-8.3,57.7-24.8c0.1-0.2,0.3-0.3,0.4-0.5c5.2-6.3,11.2-12,17.5-18.1c4.3-4.1,8.7-8.4,13-12.9
+			c9.9-10.3,15.1-22.3,15.1-34.6c0-12.4-5.3-24.3-15.4-34.3L374.456,293.506z M410.256,398.806
+			C410.156,398.806,410.156,398.906,410.256,398.806c-3.9,4.2-7.9,8-12.2,12.2c-6.5,6.2-13.1,12.7-19.3,20
+			c-10.1,10.8-22,15.9-37.6,15.9c-1.5,0-3.1,0-4.6-0.1c-29.7-1.9-57.3-13.5-78-23.4c-56.6-27.4-106.3-66.3-147.6-115.6
+			c-34.1-41.1-56.9-79.1-72-119.9c-9.3-24.9-12.7-44.3-11.2-62.6c1-11.7,5.5-21.4,13.8-29.7l34.1-34.1c4.9-4.6,10.1-7.1,15.2-7.1
+			c6.3,0,11.4,3.8,14.6,7c0.1,0.1,0.2,0.2,0.3,0.3c6.1,5.7,11.9,11.6,18,17.9c3.1,3.2,6.3,6.4,9.5,9.7l27.3,27.3
+			c10.6,10.6,10.6,20.4,0,31c-2.9,2.9-5.7,5.8-8.6,8.6c-8.4,8.6-16.4,16.6-25.1,24.4c-0.2,0.2-0.4,0.3-0.5,0.5
+			c-8.6,8.6-7,17-5.2,22.7c0.1,0.3,0.2,0.6,0.3,0.9c7.1,17.2,17.1,33.4,32.3,52.7l0.1,0.1c27.6,34,56.7,60.5,88.8,80.8
+			c4.1,2.6,8.3,4.7,12.3,6.7c3.6,1.8,7,3.5,9.9,5.3c0.4,0.2,0.8,0.5,1.2,0.7c3.4,1.7,6.6,2.5,9.9,2.5c8.3,0,13.5-5.2,15.2-6.9
+			l34.2-34.2c3.4-3.4,8.8-7.5,15.1-7.5c6.2,0,11.3,3.9,14.4,7.3c0.1,0.1,0.1,0.1,0.2,0.2l55.1,55.1
+			C420.456,377.706,420.456,388.206,410.256,398.806z"
+                                />
+                                <path
+                                  d="M256.056,112.706c26.2,4.4,50,16.8,69,35.8s31.3,42.8,35.8,69c1.1,6.6,6.8,11.2,13.3,11.2c0.8,0,1.5-0.1,2.3-0.2
+			c7.4-1.2,12.3-8.2,11.1-15.6c-5.4-31.7-20.4-60.6-43.3-83.5s-51.8-37.9-83.5-43.3c-7.4-1.2-14.3,3.7-15.6,11
+			S248.656,111.506,256.056,112.706z"
+                                />
+                                <path
+                                  d="M473.256,209.006c-8.9-52.2-33.5-99.7-71.3-137.5s-85.3-62.4-137.5-71.3c-7.3-1.3-14.2,3.7-15.5,11
+			c-1.2,7.4,3.7,14.3,11.1,15.6c46.6,7.9,89.1,30,122.9,63.7c33.8,33.8,55.8,76.3,63.7,122.9c1.1,6.6,6.8,11.2,13.3,11.2
+			c0.8,0,1.5-0.1,2.3-0.2C469.556,223.306,474.556,216.306,473.256,209.006z"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+
+                          <Link
+                            href="tel:+18665303357"
+                            className="text-primary text-2xl font-bold ml-4"
+                          >
+                            (+1)866-530-3357
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                    <div className=" container  absolute top-0 left-0 z-10  flex justify-center mt-10 ">
-                        <form className="rounded-3xl bg-white px-4 py-10 dark:bg-[#101626] lg:w-5/12 lg:px-8 mb-4 shadow-lg w-11/12 ">
-                            <div className="relative mt-5">
-                                <label className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white">
-                                    Full Name
-                                </label>
-                                <input
-                                    type="text"
-                                    {...register("name", { required: true })}
-                                    className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-3 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
-                                />
-                            </div>
-                            <div className="relative mt-5">
-                                <label className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white">
-                                    Email Address
-                                </label>
-                                <input
-                                    type="email"
-                                    {...register("email", { required: true })}
-                                    className={`w-full rounded-2xl border-2 border-gray/20 bg-transparent p-3 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12
-                        [ngClass]="{'border-[#DC2828]': form.controls['email'].hasError('email')}"`}
-                                />
-                            </div>
-                            <div className="relative mt-5">
-                                <label className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white">
-                                    Phone
-                                </label>
-                                <div className="flex gap-2 justify-around">
-                                    <button type="button" onClick={openCountryModal} className="w-[150px] rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary">
-                                        {/* {{ selectedCountry?.flag }} {{ selectedCountry?.dial_code }} */}
-                                    </button>
-                                    <input
-                                        type="text"
-                                        {...register("phone", { required: true })}
-                                        className={`w-full rounded-2xl border-2 border-gray/20 bg-transparent p-3 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12
-                            [ngClass]="{'border-[#DC2828]': form.controls['phoneNo'].hasError('pattern')}" `}
-                                    />
-                                </div>
-                            </div>
-                            {/* Adding modal for choosing Country Code */}
-                            {showModal && (<div className=" modal fixed z-10 inset-0 " >
-                                <div className="fixed inset-0 bg-black opacity-50"></div>
-                                <div className="flex items-center justify-center min-h-screen ">
-                                    <div className="modal-dialog w-[24rem] z-20 ">
-                                        <div className="modal-content bg-white p-4 pb-0 max-h-[26rem] rounded-lg">
-                                            <div className="sticky top-0 px-2">
-                                                <div className="flex justify-between mb-4">
-                                                    <div className="">
-                                                        <h2 className="  text-black font-bold text-xl ">Select Area Code</h2>
-                                                    </div>
-                                                    <div className="flex justify-end">
-                                                        <button type='button' onClick={closeCountryModal} className="">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray">
-                                                                <path d="M6.697 4.575L4.575 6.697 9.88 12l-5.304 5.303 2.122 2.122L12 14.12l5.303 5.304 2.122-2.122L14.12 12l5.304-5.303-2.122-2.122L12 9.88 6.697 4.575z"></path>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div className="mb-4">
-                                                    <input type="text" placeholder="Search country..."
-                                                        className="border border-gray/20 rounded-md py-2 px-4 w-full" />
-                                                </div>
-                                            </div>
-                                            <div className="max-h-[16rem] overflow-y-auto">
-                                                <ul>
-                                                    {/* <li *ngFor="let item of filteredCountries" (click)="selectCountry(item)"
-                                            [class.selected]="item.name.toLowerCase() === searchText.toLowerCase()"
-                                            className="cursor-pointer px-2 py-2 hover:bg-[#BBBBBB] text-black flex justify-between {{ item.name.toLowerCase() === searchText.toLowerCase() ? 'bg-primary text-white' : '' }}">
-                                            <p>{{ item.flag }} {{ item.name }}</p>
-                                            <p>{{ item.dial_code }}</p>
-                                        </li> */}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>)}
+                  </div>
+                </div>
+              </div>
 
-                            <div className="relative mt-5">
-                                <label className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white">
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    rows={4}
-                                    className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-3 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
-                                ></textarea>
-                                <div className="flex justify-center text-center">
-                                    <p className="w-4/5 pt-5">
-                                        We value your privacy and guarantee that your information will
-                                        remain confidential.
-                                    </p>
-                                </div>
-                            </div>
+              <div className="flex justify-center ">
+                <div className="grid items-center gap-16 lg:grid-cols-2 xl:items-start pt-10 ">
+                  <div className="lg:order-2 order:1 md:col-span-2 lg:col-auto flex justify-center ">
+                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right  ">
+                      <div className=" flex justify-center items-center  lg:w-[28rem] h-[23rem] w-[22rem]  bg-[#f3f3fe]  rounded-xl ">
+                        <div className="lg:w-[24rem] h-[19rem] w-[18rem] bg-white rounded-xl p-7 pt-10">
+                          <div className="flex justify-center lg:block">
+                            <svg
+                              width="29"
+                              height="29"
+                              viewBox="0 0 29 29"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M14.25 0.5C11.4316 0.5 8.67653 1.33575 6.33313 2.90156C3.98973 4.46737 2.16327 6.69291 1.08472 9.29676C0.00617421 11.9006 -0.276023 14.7658 0.273816 17.53C0.823656 20.2943 2.18084 22.8334 4.17374 24.8263C6.16663 26.8192 8.70574 28.1764 11.47 28.7262C14.2342 29.276 17.0994 28.9938 19.7032 27.9153C22.3071 26.8367 24.5326 25.0103 26.0984 22.6669C27.6643 20.3235 28.5 17.5684 28.5 14.75C28.4889 10.9741 26.984 7.35596 24.314 4.68597C21.644 2.01597 18.0259 0.51108 14.25 0.5ZM17.1 20.022C16.9324 20.119 16.747 20.1812 16.5548 20.205C16.3627 20.2288 16.1677 20.2137 15.9815 20.1605C15.7953 20.1073 15.6218 20.0171 15.4712 19.8954C15.3206 19.7737 15.1961 19.6229 15.105 19.452L12.968 15.462C12.8527 15.2431 12.803 14.9955 12.825 14.749V7.625C12.825 7.24707 12.9751 6.88461 13.2424 6.61737C13.5096 6.35013 13.8721 6.2 14.25 6.2C14.6279 6.2 14.9904 6.35013 15.2576 6.61737C15.5249 6.88461 15.675 7.24707 15.675 7.625V14.325L17.67 18.025C17.8327 18.3705 17.8646 18.7633 17.7598 19.1305C17.655 19.4977 17.4206 19.8145 17.1 20.022Z"
+                                fill="#5C96FD"
+                              />
+                            </svg>
+                          </div>
 
-                            <div className="mt-6 text-center ltr:lg:text-right rtl:lg:text-left flex justify-center">
-                                <button onClick={handleSubmit((data) => {
+                          <h5 className="my-5 text-2xl font-semibold tracking-tight text-black dark:text-white">
+                            Our Hours
+                          </h5>
 
-                                    console.log(data)
-                                })} type="submit" disabled={false}
-                                    className="w-5/12 btn bg-primary capitalize text-white p-3 dark:bg-primary dark:text-white dark:hover:bg-primary rounded-full disabled:bg-gray">
-                                    SUBMIT
-                                    <svg aria-hidden="true" role="status"
-                                        className="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                            fill="#E5E7EB" />
-                                        <path
-                                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                            fill="currentColor" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                    </div >
-                </div >
-                <div className="relative container  lg:mt-[350px] mt-[24rem] ">
-                    {/* <!-- <div className="relative ">
+                          <p className="mb-2 font-normal text-gray dark:text-gray-400">
+                            We operate Monday to Friday, from 9:00 AM{" "}
+                          </p>
+                          <p className="mb-2 font-normal text-gray dark:text-gray-400">
+                            {" "}
+                            to 5:00 PM Eastern Time. We are closed on
+                          </p>
+                          <p className="mb-3 font-normal text-gray dark:text-gray-400">
+                            {" "}
+                            public holidays.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="lg:order-1 order:2 md:col-span-2 lg:col-auto flex justify-center ">
+                    <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right  ">
+                      <div className=" flex justify-center items-center  lg:w-[28rem] h-[23rem] w-[22rem]  bg-[#f3f3fe] rounded-xl  ">
+                        <div className="lg:w-[24rem] h-[19rem] w-[18rem] bg-white rounded-xl p-7 pt-10">
+                          <div className="flex justify-center lg:block">
+                            <svg
+                              width="24"
+                              height="29"
+                              viewBox="0 0 24 29"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M11.9781 0.5C8.95571 0.503441 6.05808 1.70561 3.92091 3.84278C1.78374 5.97995 0.581566 8.87759 0.578125 11.9C0.578125 16.538 3.94513 20.39 7.51213 24.467C8.64112 25.758 9.81213 27.093 10.8491 28.444C10.9822 28.6167 11.1532 28.7565 11.3489 28.8527C11.5445 28.9489 11.7596 28.9989 11.9776 28.9989C12.1956 28.9989 12.4107 28.9489 12.6064 28.8527C12.802 28.7565 12.973 28.6167 13.1061 28.444C14.1461 27.093 15.3151 25.758 16.4431 24.467C20.0111 20.39 23.3781 16.538 23.3781 11.9C23.3747 8.87759 22.1725 5.97995 20.0353 3.84278C17.8982 1.70561 15.0005 0.503441 11.9781 0.5ZM11.9781 16.175C11.1326 16.175 10.3061 15.9243 9.60306 15.4545C8.90004 14.9848 8.3521 14.3171 8.02854 13.536C7.70498 12.7548 7.62032 11.8953 7.78527 11.066C7.95022 10.2367 8.35737 9.47499 8.95524 8.87712C9.55311 8.27925 10.3148 7.87209 11.1441 7.70714C11.9734 7.54219 12.8329 7.62685 13.6141 7.95041C14.3953 8.27398 15.0629 8.82192 15.5327 9.52494C16.0024 10.228 16.2531 11.0545 16.2531 11.9C16.2531 12.4614 16.1425 13.0173 15.9277 13.536C15.7129 14.0546 15.398 14.5259 15.001 14.9229C14.604 15.3199 14.1328 15.6347 13.6141 15.8496C13.0954 16.0644 12.5395 16.175 11.9781 16.175Z"
+                                fill="#5C96FD"
+                              />
+                            </svg>
+                          </div>
+
+                          <h5 className="my-5 text-2xl font-semibold tracking-tight text-black dark:text-white">
+                            Our Office
+                          </h5>
+
+                          <p className="mb-2 font-normal text-gray dark:text-gray-400">
+                            Liqueous LP
+                          </p>
+                          <p className="mb-2 font-normal text-gray dark:text-gray-400">
+                            {" "}
+                            8 THE GRN NUM 15337
+                          </p>
+                          <p className="mb-3 font-normal text-gray dark:text-gray-400">
+                            {" "}
+                            DOVER, DE 19901{" "}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section>
+          <div className="container my-[100px]">
+            <div className="heading text-center">
+              <div className="flex justify-center">
+                <svg
+                  width="41"
+                  height="25"
+                  viewBox="0 0 41 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M28.0418 0.5L32.6287 5.08L22.8541 14.84L14.8421 6.84L0 21.68L2.82421 24.5L14.8421 12.5L22.8541 20.5L35.4729 7.92L40.0597 12.5V0.5H28.0418Z"
+                    fill="#6C4FFE"
+                  />
+                </svg>
+              </div>
+
+              <h4>Get in Touch</h4>
+
+              <p> To discuss your financial needs or to learn more about</p>
+              <p> our services, please reach out to us: </p>
+            </div>
+            <div className="flex justify-center">
+              <div className="grid items-center gap-8 lg:gap-16 md:grid-cols-1 lg:grid-cols-1 xl:items-start ">
+                <div className="lg:order-2 order:1 md:col-span-2 lg:col-auto flex justify-center ">
+                  <div className="text-center font-semibold ltr:md:text-left rtl:md:text-right  ">
+                    <div className=" flex justify-center items-center   h-[9rem] w-[22rem] lg:w-[28rem] bg-[#f3f3fe]  rounded-xl ">
+                      <div className=" h-[5rem] w-[18rem] lg:w-[24rem] bg-white rounded-xl p-5">
+                        <div className="flex justify-center items-center">
+                          <svg
+                            width="34"
+                            height="27"
+                            viewBox="0 0 34 27"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M30.6 1.24412e-09H3.4C2.50416 -2.50359e-06 1.64489 0.355321 1.01068 0.988028C0.376476 1.62073 0.0191185 2.47916 0.017 3.375L0 23.625C0.00659868 24.5224 0.367723 25.3808 1.00463 26.013C1.64154 26.6452 2.50258 27 3.4 27H30.6C31.4974 27 32.3585 26.6452 32.9954 26.013C33.6323 25.3808 33.9934 24.5224 34 23.625V3.375C33.9934 2.4776 33.6323 1.61921 32.9954 0.986982C32.3585 0.354755 31.4974 -2.4259e-05 30.6 1.24412e-09ZM30.6 6.75L17 15.188L3.4 6.75V3.375L17 11.813L30.6 3.375V6.75Z"
+                              fill="#5C96FD"
+                            />
+                          </svg>
+                          <p className="mb-3 font-normal text-gray dark:text-gray-400 pl-2 pt-3">
+                            info@liqueous.com
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="mt-10 text-center">
+                <p className=" font-normal text-gray dark:text-gray-400 ">
+                  Alternatively, you can fill out the contact form below, and
+                  one of{" "}
+                </p>
+                <p className=" mb-3font-normal text-gray dark:text-gray-400 ">
+                  our <span className="text-secondary">representatives</span>{" "}
+                  will get back to you as soon as possible.
+                </p>
+              </div>
+            </div>
+            <div className="container flex justify-center">
+              <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3   mx-4 lg:mx-0">
+                <div className="max-w-sm p-6 bg-[#fcfcfd] border border-white rounded-2xl shadow dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none">
+                  <svg
+                    width="34"
+                    height="27"
+                    viewBox="0 0 34 27"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M25.2 0H2.8C2.05982 0.00370093 1.35122 0.300333 0.829145 0.825034C0.307067 1.34974 0.0139907 2.05981 0.014 2.8L0 28L5.6 22.4H25.2C25.942 22.3979 26.6529 22.1022 27.1776 21.5776C27.7022 21.0529 27.9979 20.342 28 19.6V2.8C27.9979 2.05804 27.7022 1.34708 27.1776 0.822433C26.6529 0.297788 25.942 0.00211084 25.2 0ZM5.6 9.8H22.4V12.6H5.6V9.8ZM16.8 16.8H5.6V14H16.8V16.8ZM22.4 8.4H5.6V5.6H22.4V8.4Z"
+                      fill="#5C96FD"
+                    />
+                  </svg>
+
+                  <h5 className="my-3 text-2xl font-semibold tracking-tight text-black dark:text-white">
+                    Advisory Services
+                  </h5>
+
+                  <p className="mb-3 font-normal text-gray dark:text-gray-400">
+                    Looking for expert advice or guidance?
+                    <br />
+                    Our advisory services are designed to provide you with
+                    valuable insights and recommendations.{" "}
+                  </p>
+                  <a href="https://calendly.com/jacob-n2" target="_blank">
+                    {" "}
+                    <button className="  my-3  p-3 block w-fit text-sm  bg-white border-2 border-gray/20 text-black font-bold rounded-full dark:bg-primary">
+                      Schedule an advisory meeting today.
+                    </button>
+                  </a>
+                </div>
+                <div className="max-w-sm p-6 bg-[#fcfcfd] border border-white rounded-2xl shadow dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none">
+                  <svg
+                    width="34"
+                    height="27"
+                    viewBox="0 0 34 27"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M25.2 0H2.8C2.05982 0.00370093 1.35122 0.300333 0.829145 0.825034C0.307067 1.34974 0.0139907 2.05981 0.014 2.8L0 28L5.6 22.4H25.2C25.942 22.3979 26.6529 22.1022 27.1776 21.5776C27.7022 21.0529 27.9979 20.342 28 19.6V2.8C27.9979 2.05804 27.7022 1.34708 27.1776 0.822433C26.6529 0.297788 25.942 0.00211084 25.2 0ZM5.6 9.8H22.4V12.6H5.6V9.8ZM16.8 16.8H5.6V14H16.8V16.8ZM22.4 8.4H5.6V5.6H22.4V8.4Z"
+                      fill="#5C96FD"
+                    />
+                  </svg>
+
+                  <h5 className="my-3 text-2xl font-semibold tracking-tight text-black dark:text-white">
+                    Business Consultation
+                  </h5>
+
+                  <p className="mb-3 font-normal text-gray dark:text-gray-400">
+                    {" "}
+                    Explore opportunities for collaboration, partnerships, or
+                    discuss your business needs with us.{" "}
+                  </p>
+                  <a href="https://Calendly.com/robert-ksk" target="_blank">
+                    {" "}
+                    <button className="text-sm  my-3 mt-9  p-3 block w-fit  bg-white border-2 border-gray/20 text-black font-bold rounded-full dark:bg-primary">
+                      Click to Schedule a business consultation meeting.
+                    </button>
+                  </a>
+                </div>
+                <div className="max-w-sm p-6 bg-[#fcfcfd] border border-white rounded-2xl shadow dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none">
+                  <svg
+                    width="34"
+                    height="27"
+                    viewBox="0 0 34 27"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M25.2 0H2.8C2.05982 0.00370093 1.35122 0.300333 0.829145 0.825034C0.307067 1.34974 0.0139907 2.05981 0.014 2.8L0 28L5.6 22.4H25.2C25.942 22.3979 26.6529 22.1022 27.1776 21.5776C27.7022 21.0529 27.9979 20.342 28 19.6V2.8C27.9979 2.05804 27.7022 1.34708 27.1776 0.822433C26.6529 0.297788 25.942 0.00211084 25.2 0ZM5.6 9.8H22.4V12.6H5.6V9.8ZM16.8 16.8H5.6V14H16.8V16.8ZM22.4 8.4H5.6V5.6H22.4V8.4Z"
+                      fill="#5C96FD"
+                    />
+                  </svg>
+
+                  <h5 className="my-3 text-2xl font-semibold tracking-tight text-black dark:text-white">
+                    Technical Support
+                  </h5>
+
+                  <p className="mb-3 font-normal text-gray dark:text-gray-400">
+                    Having technical issues or questions about our products or
+                    services?
+                    <br /> Talk to Our technical support team is here to help.{" "}
+                  </p>
+                  <a href="https://calendly.com/chaudhry-umar" target="_blank">
+                    {" "}
+                    <button className=" text-sm my-3  p-3 block w-fit  bg-white border-2 border-gray/20 text-black font-bold rounded-full dark:bg-primary">
+                      Schedule a technical support meeting now.
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="relative container ">
+          <div className="relative ">
+            <div className="container h-[470px]  lg:w-4/5 bg-gradient-to-r to-transparent rounded-3xl lg:py-[50px] flex justify-around">
+              <div className="flex h-full w-full justify-between ">
+                <div className="h-full w-36 relative  left-[15%] flex items-center  ">
+                  <img src="/assets/images/Graphic - Left.png" />
+                </div>
+                <div className=" w-36 relative  top-[-50%] left-[-15%] flex items-end h-screen   ">
+                  <svg
+                    width="252"
+                    height="252"
+                    viewBox="0 0 252 252"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M111.723 14.1421C119.533 6.33165 132.197 6.33165 140.007 14.1421L237.588 111.723C245.398 119.533 245.398 132.197 237.588 140.007L140.007 237.588C132.197 245.398 119.533 245.398 111.723 237.588L14.1421 140.007C6.33162 132.197 6.33162 119.533 14.1421 111.723L111.723 14.1421Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M177.355 177.095C148.918 205.532 102.812 205.532 74.3748 177.095C45.9375 148.657 45.9373 102.552 74.3748 74.1143C102.812 45.677 148.918 45.677 177.355 74.1143C205.793 102.552 205.792 148.657 177.355 177.095Z"
+                      fill="#C8C2FC"
+                    />
+                    <path
+                      d="M56.671 106.734C49.694 131.18 55.7385 158.458 74.8564 177.576C103.028 205.748 148.918 205.532 177.355 177.095C205.792 148.657 206.008 102.767 177.837 74.5959L126.347 126.086L56.671 106.734Z"
+                      fill="#6C4FFE"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div className=" container  absolute top-0 left-0 z-10  flex justify-center mt-10 "></div>
+          <ContactForm />
+
+          </div>
+          {/* <ContactForm /> */}
+        </div>
+        {/* <div className="relative container  lg:mt-[350px] mt-[24rem] ">
+          <!-- <div className="relative ">
             <div className="container   flex justify-center lg:my-[100px]">
                 <div
                     className="h-[28rem] w-[64rem] bg-[#eff6ff] rounded-xl flex justify-center items-center dark:border-2 dark:border-gray dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none  ">
@@ -396,9 +436,9 @@ const ContactUs = () => {
 
                 </div>
             </div>
-        </div> --> */}
+        </div> -->
 
-                    {/* <!-- <div className=" flex justify-center lg:mb-[100px] mb-[80px]">
+          <!-- <div className=" flex justify-center lg:mb-[100px] mb-[80px]">
             <div
                 className="lg:h-[24rem] h-[30rem] lg:w-5/6 w-full border-[28px] border-[#f3f3fe] rounded-xl bg-white flex justify-center items-center  dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none   ">
 
@@ -446,11 +486,11 @@ const ContactUs = () => {
                    
                 </div>
             </div>
-        </div> --> */}
-                </div>
-            </div >
-        </div>
-    );
+        </div> -->
+        </div> */}
+      </div>
+    </div>
+  );
 };
 
 export default ContactUs;

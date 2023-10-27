@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="overflow-x-hidden">
         <section className="bg-gradient-to-r from-[#dbeafe] p-10 dark:bg-none">
           <div className="relative z-[1] text-center text-white ">
-          <h2 className="text-4xl font-extrabold leading-normal sm:text-6xl lg:text-[50px] lg:leading-[60px]">
+            <h2 className="text-4xl font-extrabold leading-normal sm:text-6xl lg:text-[50px] lg:leading-[60px]">
               <span className="text-primary text-xl ">
                 SAME DAY QUOTES &nbsp;
                 <br className="lg:hidden md:hidden" />
@@ -43,13 +43,59 @@ const Footer = () => {
       </div>
       <div className="container">
         <div className="grid gap-y-10 gap-x-4 sm:grid-cols-3 lg:grid-cols-4 pt-14">
-          <div className="relative hidden md:flex">
+          {/* <div className="relative hidden md:flex">
             <img
               src="/assets/images/logo-full.png"
               alt="liqueous"
               className="h-7"
             />
-            <ul className="mt-12 flex items-center gap-8"></ul>
+            <ul className="mt-12 flex items-center gap-8">
+              <li>
+                <Link
+                  href="https://www.linkedin.com/company/liqueous/"
+                  target="_blank"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                      fill="#747d9e"
+                    ></path>
+                  </svg>
+                </Link>
+              </li>
+            </ul>
+          </div> */}
+          <div className="relative flex flex-col">
+            <div className="w-[50%]">
+              <img src="/assets/images/logo-full.png" alt="liqueous" />
+            </div>
+            <div>
+              <ul className="mt-12 flex items-center gap-8">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/company/liqueous/"
+                    target="_blank"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                        fill="#747d9e"
+                      ></path>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div>
             <ul className="flex flex-col gap-3 ">
@@ -74,14 +120,14 @@ const Footer = () => {
                 </Link>
               </li>
 
-              <li>
+              {/* <li>
                 <Link
                   href="/blog"
                   className="inline-block transition hover:scale-110 hover:text-secondary"
                 >
                   Blog
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/contact-us"
@@ -121,14 +167,14 @@ const Footer = () => {
                   Privacy Policy
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/faq"
                   className="inline-block transition hover:scale-110 hover:text-secondary"
                 >
                   FAQs
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div>
@@ -249,7 +295,7 @@ const Footer = () => {
               </Link>
             </div>
             <div>
-            {" "}
+              {" "}
               Need help?{" "}
               <Link
                 href="/contact-us"

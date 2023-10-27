@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -163,7 +164,7 @@ const Header: React.FC = () => {
             )}
         </li>
 
-                <li>
+                {/* <li>
                   <Link
                     href="/blogs"
                     className={`text-gray whitespace-nowrap dark:text-white" 
@@ -173,7 +174,7 @@ const Header: React.FC = () => {
                     Blog
                
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link
                     href="/contact-us"
@@ -195,9 +196,16 @@ const Header: React.FC = () => {
                         </Link>
                     </li>
                     <li>
+                      {pathname == "/get-estimate" ? (
+                     
+                        <Link href="tel:+18665303357">
+                          <button type="button" className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full">866-530-3357<p className="text-[0.6rem]">CALL US TODAY</p></button>
+                        </Link>
+                      ):(
                         <Link href="/get-estimate">
                           <button type="button" className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full">GET A QUOTE TODAY</button>
                         </Link>
+                      )}
                     </li>
                     <li className="hidden lg:block">
                         <Link href="{{loginUrl}}"  className="text-gray cursor-pointer">Sign In

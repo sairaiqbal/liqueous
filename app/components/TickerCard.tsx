@@ -16,9 +16,10 @@ interface TickerCardProps {
 }
 
 const TickerCard:React.FC<TickerCardProps> = ({ ticker, colorClass}) => {
-  
+  debugger
+  //  console.log("tickeerr",ticker?.name);
   return (
-    <Link href={`/quote/US/${ticker?.name}`}>
+    <Link href={`/landing/US/${ticker?.name}`}>
             <div className={`cursor-pointer w-64 p-1.5 bg-white border border-white rounded-full shadow dark:bg-gray-800 dark:border-gray-700 flex mr-2 ml-2 opacity-70 hover:scale-110 hover:border-primary duration-200`}>
                 <div className={`${colorClass} mt-0.5 ml-0.5 font-bold text-white rounded-full flex items-center justify-center font-mono text-2xl`} style={{ height: '50px', width: '50px' }}>{ticker?.alphabet}</div>
                 <div className="ml-2">

@@ -60,7 +60,7 @@ const borro = () => {
 
                   </p>
 
-                  <Link href="/get-estimate"> <button type="button" className
+                  <Link href="/get-estimate/Financing"> <button type="button" className
                     ="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
                 </div>
               </div>
@@ -127,7 +127,7 @@ const borro = () => {
                 <p>At Liqueous, we have pioneered a groundbreaking solution - BORRO - a liquidity solution that
                   allows you to retain beneficial ownership of your securities while accessing the liquidity you
                   need.</p>
-                <Link href="/get-estimate">  <button type="button" className
+                <Link href="/get-estimate/Financing">  <button type="button" className
                   ="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></Link>
 
               </div>
@@ -262,7 +262,7 @@ const borro = () => {
 
                   {/* <!-- <a href="" className
                     ="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                  <Link href="/get-estimate">  <button type="button" className
+                  <Link href="/get-estimate/Financing">  <button type="button" className
                     ="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></Link>
                 </div>
               </div>

@@ -16,7 +16,7 @@ const ourFund = () => {
                 <div className="flex justify-center">
                     <img src="/assets/images/Graphics.svg" className="z-0"/>
                 </div>
-                <div className="absolute inset-0 top-10 flex justify-center text-center   md:mt-[31rem] lg:mt-[40rem] mt-[10rem] ">
+                <div className="absolute inset-0 top-10 flex justify-center text-center   md:mt-[31rem] lg:mt-[22rem] mt-[10rem] ">
 
                     <div className=" lg:w-[77%] lg:px-14 px-0 w-full dark:bg-black ">
                         <div className="heading mb-0 ">
