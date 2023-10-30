@@ -49,6 +49,63 @@ const chartData = {
   ],
 };
 
+// const chartOptions = {
+//   plugins: {
+//     legend: {
+//       display: false,
+//     },
+//     tooltip: {
+//       enabled: true,
+//       mode: 'index',
+//       intersect: false,
+//       callbacks: {
+//         title: (tooltipItem: { parsed: { x: any; }; }[]) => {
+//           const xValue = tooltipItem[0].parsed.x;
+//           const options = {
+//             year: 'numeric' as const,
+//             month: 'long'as const,
+//             day: 'numeric'as const,
+//           };
+//           const formattedDate = new Date(xValue).toLocaleDateString('en-US', options);
+//           return formattedDate;
+//         },
+//         label: (tooltipItem: { formattedValue: string; }) => {
+//           return 'Close: $' + tooltipItem.formattedValue;
+//         },
+//         labelColor: () => {
+//           return {
+//             borderColor: 'rgba(54, 162, 235, 0.2)',
+//             backgroundColor: 'rgba(54, 162, 235, 0.2)',
+//             borderWidth: 2,
+//             borderRadius: 6,
+//           };
+//         },
+//       },
+//     },
+//   },
+//   hover: {
+//     mode: 'index',
+//     intersect: false,
+//   },
+//   responsive: true,
+//   maintainAspectRatio: false,
+//   scales: {
+//     x: {
+//       type: 'time',
+//       display:false,
+//       time: {
+//         unit: 'day',
+//         displayFormats: {
+//           day: 'MMM dd',
+//         },
+//       },
+//     },
+//     y: {
+//       beginAtZero: false,
+//       display: false,
+//     },
+//   },
+// };
 const chartOptions = {
   plugins: {
     legend: {
@@ -56,20 +113,20 @@ const chartOptions = {
     },
     tooltip: {
       enabled: true,
-      mode: 'index',
+      mode: 'index' as const, // Correct the type here
       intersect: false,
       callbacks: {
-        title: (tooltipItem: { parsed: { x: any; }; }[]) => {
+        title: (tooltipItem: { parsed: { x: any }[] }) => {
           const xValue = tooltipItem[0].parsed.x;
           const options = {
             year: 'numeric' as const,
-            month: 'long'as const,
-            day: 'numeric'as const,
+            month: 'long' as const,
+            day: 'numeric' as const,
           };
           const formattedDate = new Date(xValue).toLocaleDateString('en-US', options);
           return formattedDate;
         },
-        label: (tooltipItem: { formattedValue: string; }) => {
+        label: (tooltipItem: { formattedValue: string }) => {
           return 'Close: $' + tooltipItem.formattedValue;
         },
         labelColor: () => {
@@ -84,7 +141,7 @@ const chartOptions = {
     },
   },
   hover: {
-    mode: 'index',
+    mode: 'index' as const, // Correct the type here
     intersect: false,
   },
   responsive: true,
@@ -92,7 +149,7 @@ const chartOptions = {
   scales: {
     x: {
       type: 'time',
-      display:false,
+      display: false,
       time: {
         unit: 'day',
         displayFormats: {
@@ -107,9 +164,10 @@ const chartOptions = {
   },
 };
 
+
 return (
   <div className="flex-auto h-[250px]">
-    <Line data={chartData} options={chartOptions} />
+    {/* <Line data={chartData} options={chartOptions} /> */}
   </div>
 );
 };
