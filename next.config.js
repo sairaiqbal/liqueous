@@ -9,6 +9,15 @@ async rewrites() {
         },
     ]
 },
+images:{
+    remotePatterns:[
+        {
+        protocol: 'https',
+        hostname: 'eodhistoricaldata.com',
+    }
+
+    ]
+},
 }
 
 
