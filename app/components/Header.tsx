@@ -19,8 +19,13 @@ const Header: React.FC = () => {
       }
     };
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+      if (typeof window !== "undefined") {
+        setWindowWidth(window.innerWidth);
+      }
     };
+    // const handleResize = () => {
+    //   setWindowWidth(window.innerWidth);
+    // };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
@@ -28,10 +33,9 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.addEventListener("resize", handleResize);
-
     };
   }, []);
-  
+
   const toggleMenu = () => {
     if (window.innerWidth < 1024) {
       setShowMenu((prevShowMenu) => !prevShowMenu);
@@ -60,115 +64,120 @@ const Header: React.FC = () => {
             }`}
           ></div>
 
-          {(showMenu || windowWidth >= 1024) && <div
-            className={`menus  ${
-              showMenu ? "overflow-y-auto ltr:!right-0 rtl:!left-0" : ""
-            }`}
-          >
-             <div className="flex justify-end border-b border-gray/10 ltr:text-right rtl:text-left lg:hidden">
-              <button
-                onClick={toggleMenu}
-                type="button"
-                className="pt-2 h-10 w-10 rounded-full text-gray dark:text-white hover:text-primary"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="h-6 w-6"
+          {(showMenu || windowWidth >= 1024) && (
+            <div
+              className={`menus  ${
+                showMenu ? "overflow-y-auto ltr:!right-0 rtl:!left-0" : ""
+              }`}
+            >
+              <div className="flex justify-end border-b border-gray/10 ltr:text-right rtl:text-left lg:hidden">
+                <button
+                  onClick={toggleMenu}
+                  type="button"
+                  className="pt-2 h-10 w-10 rounded-full text-gray dark:text-white hover:text-primary"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <ul onClick={() => setShowMenu(false)}>
-              <li>
-                <Link
-                  href="/"
-                  passHref
-                  className={`text-gray dark:text-white "  ${
-                    pathname === "/" ? "active" : ""
-                  }`}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/our-fund"
-                  className={`text-gray whitespace-nowrap dark:text-white" 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <ul onClick={() => setShowMenu(false)}>
+                <li>
+                  <Link
+                    href="/"
+                    passHref
+                    className={`text-gray dark:text-white "  ${
+                      pathname === "/" ? "active" : ""
+                    }`}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/our-fund"
+                    className={`text-gray whitespace-nowrap dark:text-white" 
                              ${pathname === "/our-fund" ? "active" : ""}`}
+                  >
+                    Our Fund
+                  </Link>
+                </li>
+                <li
+                  className="group relative"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  Our Fund
-                </Link>
-              </li>
-              <li
-                className="group relative"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <a
-                  className={`text-gray dark:text-white ${
-                    showMenu || "isSubmenuActive()" ? "active" : ""
-                  }`}
-                >
-                  Services
-                  <div className="transition duration-500 group-hover:rotate-180 ltr:ml-1 rtl:mr-1">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M19 9L12 15L10.25 13.5M5 9L7.33333 11"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </a>
-                {
-                  <div className="submenu">
-                    <a
-                      href="/borro-liqueous"
-                      className={pathname === "/borro-liqueous" ? "active" : ""}
-                    >
-                      BORRO by Liqueous
-                    </a>
-                    <a
-                      href="/private-block"
-                      className={pathname === "/private-block" ? "active" : ""}
-                    >
-                      Private Block Purchase
-                    </a>
-                    <a
-                      href="/equity-lines"
-                      className={pathname === "/equity-lines" ? "active" : ""}
-                    >
-                      Equity Lines of Credit
-                    </a>
-                    <a
-                      href="/financial-solution"
-                      className={
-                        pathname === "/financial-solution" ? "active" : ""
-                      }
-                    >
-                      Comprehensive Financial Solutions
-                    </a>
-                  </div>
-                }
-              </li>
+                  <a
+                    className={`text-gray dark:text-white ${
+                      showMenu || "isSubmenuActive()" ? "active" : ""
+                    }`}
+                  >
+                    Services
+                    <div className="transition duration-500 group-hover:rotate-180 ltr:ml-1 rtl:mr-1">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M19 9L12 15L10.25 13.5M5 9L7.33333 11"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </a>
+                  {
+                    <div className="submenu">
+                      <a
+                        href="/borro-liqueous"
+                        className={
+                          pathname === "/borro-liqueous" ? "active" : ""
+                        }
+                      >
+                        BORRO by Liqueous
+                      </a>
+                      <a
+                        href="/private-block"
+                        className={
+                          pathname === "/private-block" ? "active" : ""
+                        }
+                      >
+                        Private Block Purchase
+                      </a>
+                      <a
+                        href="/equity-lines"
+                        className={pathname === "/equity-lines" ? "active" : ""}
+                      >
+                        Equity Lines of Credit
+                      </a>
+                      <a
+                        href="/financial-solution"
+                        className={
+                          pathname === "/financial-solution" ? "active" : ""
+                        }
+                      >
+                        Comprehensive Financial Solutions
+                      </a>
+                    </div>
+                  }
+                </li>
 
-              {/* <li>
+                {/* <li>
                   <Link
                     href="/blogs"
                     className={`text-gray whitespace-nowrap dark:text-white" 
@@ -179,51 +188,59 @@ const Header: React.FC = () => {
                
                   </Link>
                 </li> */}
-              <li>
-                <Link
-                  href="/contact-us"
-                  className={`text-gray whitespace-nowrap dark:text-white" 
+                <li>
+                  <Link
+                    href="/contact-us"
+                    className={`text-gray whitespace-nowrap dark:text-white" 
                              ${
                                pathname === "/contact-us" ? "text-primary" : ""
                              }`}
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-gray/30 ltr:before:-left-[2px] rtl:before:-right-[2px] lg:inline-flex"></li>
-              <li className="block lg:hidden">
-                <Link href="{{loginUrl}}" className="text-gray cursor-pointer">
-                  Sign In
-                </Link>
-              </li>
-              <li>
-                {pathname == "/get-estimate" ? (
-                  <Link href="tel:+18665303357">
-                    <button
-                      type="button"
-                      className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
-                    >
-                      866-530-3357<p className="text-[0.6rem]">CALL US TODAY</p>
-                    </button>
+                  >
+                    Contact Us
                   </Link>
-                ) : (
-                  <Link href="/get-estimate">
-                    <button
-                      type="button"
-                      className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
-                    >
-                      GET A QUOTE TODAY
-                    </button>
+                </li>
+                <li className="relative hidden items-center before:absolute before:top-1/2 before:h-[30px] before:w-[2px] before:-translate-y-1/2 before:bg-gray/30 ltr:before:-left-[2px] rtl:before:-right-[2px] lg:inline-flex"></li>
+                <li className="block lg:hidden">
+                  <Link
+                    href="{{loginUrl}}"
+                    className="text-gray cursor-pointer"
+                  >
+                    Sign In
                   </Link>
-                )}
-              </li>
-              <li className="hidden lg:block">
-                <Link href="{{loginUrl}}" className="text-gray cursor-pointer">
-                  Sign In
-                </Link>
-              </li>
-            </ul>
-          </div>}
+                </li>
+                <li>
+                  {pathname == "/get-estimate" ? (
+                    <Link href="tel:+18665303357">
+                      <button
+                        type="button"
+                        className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
+                      >
+                        866-530-3357
+                        <p className="text-[0.6rem]">CALL US TODAY</p>
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link href="/get-estimate">
+                      <button
+                        type="button"
+                        className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
+                      >
+                        GET A QUOTE TODAY
+                      </button>
+                    </Link>
+                  )}
+                </li>
+                <li className="hidden lg:block">
+                  <Link
+                    href="{{loginUrl}}"
+                    className="text-gray cursor-pointer"
+                  >
+                    Sign In
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
         <button
           type="button"
