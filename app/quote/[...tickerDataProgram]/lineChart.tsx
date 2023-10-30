@@ -29,7 +29,8 @@ ChartJS.register(
 );
 
 
-const LineChart = ({ data }: { data?: any[] }) => {
+const LineChart = ({ data}:any) => {
+  console.log( data);
  
 const labels = data?.map((dataPoint: { x: string | number | Date; }) => new Date(dataPoint.x));
 const dataValues = data?.map((dataPoint: { y: any; }) => dataPoint.y);
