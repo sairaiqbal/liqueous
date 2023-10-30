@@ -323,7 +323,7 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                       },
                   }}
                 >
-                  {response?.plans?.map((plan: any, index: number) => (
+                  {response?.plans?.map((plan: any, index) => (
                     <>
                       <div key={index}>
                         <SwiperSlide>
@@ -357,9 +357,9 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                       <path
                                         d="M5.11438 8.11438L7 10L10.7712 6.22876"
                                         stroke="white"
-                                        stroke-width="1.6"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   </div>
@@ -387,9 +387,9 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                       <path
                                         d="M5.11438 8.11438L7 10L10.7712 6.22876"
                                         stroke="white"
-                                        stroke-width="1.6"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   </div>
@@ -420,9 +420,9 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                             <path
                                               d="M5.11438 8.11438L7 10L10.7712 6.22876"
                                               stroke="white"
-                                              stroke-width="1.6"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
+                                              strokeWidth="1.6"
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
                                             />
                                           </svg>
                                         </div>
@@ -450,9 +450,9 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                             <path
                                               d="M5.11438 8.11438L7 10L10.7712 6.22876"
                                               stroke="white"
-                                              stroke-width="1.6"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
+                                              strokeWidth="1.6"
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
                                             />
                                           </svg>
                                         </div>
@@ -483,9 +483,9 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                       <path
                                         d="M5.11438 8.11438L7 10L10.7712 6.22876"
                                         stroke="white"
-                                        stroke-width="1.6"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
+                                        strokeWidth="1.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
                                   </div>
@@ -510,12 +510,12 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                   >
                                     <g
                                       id="SVGRepo_bgCarrier"
-                                      stroke-width="0"
+                                      strokeWidth="0"
                                     ></g>
                                     <g
                                       id="SVGRepo_tracerCarrier"
-                                      stroke-linecap="round"
-                                      stroke-linejoin="round"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
                                     ></g>
                                     <g id="SVGRepo_iconCarrier">
                                       <g>
@@ -547,9 +547,9 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                                         fill="#5991f5"
                                       >
                                         <path
-                                          fill-rule="evenodd"
+                                          fillRule="evenodd"
                                           d="M14.348 14.849l-4.95-4.95 4.95-4.95a.8.8 0 10-1.132-1.132l-4.95 4.95-4.95-4.95a.8.8 0 00-1.132 1.132l4.95 4.95-4.95 4.95a.8.8 0 101.132 1.132l4.95-4.95 4.95 4.95a.8.8 0 001.132-1.132z"
-                                          clip-rule="evenodd"
+                                          clipRule="evenodd"
                                         />
                                       </svg>
                                     </button>

@@ -98,9 +98,6 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
     if (name != null || name != undefined) {
       setQueryParams(true);
     }
-
-   
-   
   }, [ticker]);
 
   const onSubmit = async (data: any) => {
@@ -114,10 +111,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
     //   agentFee = data.agent_fee;
     // }
     if (showForm) {
-      if (queryParams && pathnameParts[4]  ) {
+      if (queryParams && pathnameParts[4]) {
         //
-        console.log("if statment , that includes transaction type and query params ");
-        console.log("if statement data object:",data);
+        console.log(
+          "if statment , that includes transaction type and query params "
+        );
+        console.log("if statement data object:", data);
         const formData = {
           ...data,
           exchange: exchange,
@@ -125,7 +124,6 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
           email: email[0],
           phone: phone[0],
           option_looking_for: pathnameParts[4],
-
         };
         const apiRes = await requestLoan(formData);
         setShowForm(false);
@@ -133,9 +131,11 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
         setEstimateValue(estimateRes.estimated_loan);
         setValue("estimated_loan", estimateRes.estimated_loan);
-      } else if ( queryParams) {
+      } else if (queryParams) {
         delete data.who;
-        console.log("else if ,  that doesn't include transaction type but query params ");
+        console.log(
+          "else if ,  that doesn't include transaction type but query params "
+        );
 
         // console.log("dataaaaaa" , data);
         const formData = {
@@ -160,8 +160,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
           ...data,
           exchange: exchange,
           phone: phoneNumber,
-          option_looking_for:
-            data.option_looking_for || pathnameParts[4],
+          option_looking_for: data.option_looking_for || pathnameParts[4],
         };
         const apiRes = await requestLoan(formData);
         setShowForm(false);
@@ -331,11 +330,11 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           <Controller
                             name="name"
                             control={control}
+                            defaultValue=""
                             render={({ field }) => (
                               <input
                                 {...field}
                                 type="text"
-                                name="name"
                                 autoComplete="none"
                                 required
                                 className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
@@ -355,6 +354,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           <Controller
                             name="email"
                             control={control}
+                            defaultValue=""
                             render={({ field }) => (
                               <input
                                 {...field}
@@ -392,6 +392,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                             <Controller
                               name="phone"
                               control={control}
+                              defaultValue=""
                               render={({ field }) => (
                                 <input
                                   {...field}
@@ -454,18 +455,21 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                                     </div>
                                     <div className="max-h-[16rem] overflow-y-auto">
                                       <ul>
-                                        {filteredCountries.map((country) => (
-                                          <div
-                                            key={country.prefix}
-                                            className="cursor-pointer px-2 py-2 hover:bg-[#BBBBBB] text-black flex justify-between "
-                                            onClick={() =>
-                                              handleCountrySelect(country)
-                                            }
-                                          >
-                                            {country.flag} {country.dial_code}{" "}
-                                            {country.name}
-                                          </div>
-                                        ))}
+                                        {filteredCountries.map(
+                                          (country, index) => (
+                                            <div
+                                              // key={country.prefix}
+                                              key={index}
+                                              className="cursor-pointer px-2 py-2 hover:bg-[#BBBBBB] text-black flex justify-between "
+                                              onClick={() =>
+                                                handleCountrySelect(country)
+                                              }
+                                            >
+                                              {country.flag} {country.dial_code}{" "}
+                                              {country.name}
+                                            </div>
+                                          )
+                                        )}
                                       </ul>
                                     </div>
                                   </div>
@@ -515,7 +519,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           </label>
                         </div>
                       ) : null}
-                      {radioSelected || pathnameParts[4] ?(
+                      {radioSelected || pathnameParts[4] ? (
                         <div className="relative mb-6">
                           <label
                             className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
@@ -526,6 +530,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           <Controller
                             name="shares_total"
                             control={control}
+                            defaultValue=""
                             render={({ field }) => (
                               <input
                                 {...field}
@@ -537,7 +542,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                             )}
                           />
                         </div>
-                      ):(null)}
+                      ) : null}
                     </div>
 
                     {/* <div className="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
@@ -676,7 +681,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           <Controller
                             name="estimated_loan"
                             control={control}
-                            defaultValue={null} // Set your default value here
+                            defaultValue={""} // Set your default value here
                             render={({ field }) => (
                               <input
                                 type="text"

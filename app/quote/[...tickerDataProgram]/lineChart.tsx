@@ -29,10 +29,10 @@ ChartJS.register(
 );
 
 
-const LineChart = ({ data }) => {
+const LineChart = ({ data }: { data?: any[] }) => {
  
-const labels = data.map((dataPoint) => new Date(dataPoint.x));
-const dataValues = data.map((dataPoint) => dataPoint.y);
+const labels = data?.map((dataPoint: { x: string | number | Date; }) => new Date(dataPoint.x));
+const dataValues = data?.map((dataPoint: { y: any; }) => dataPoint.y);
 
 const chartData = {
   labels: labels,
@@ -58,20 +58,20 @@ const chartOptions = {
       mode: 'index',
       intersect: false,
       callbacks: {
-        title: (tooltipItem) => {
+        title: (tooltipItem: { parsed: { x: any; }; }[]) => {
           const xValue = tooltipItem[0].parsed.x;
           const options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
+            year: 'numeric' as const,
+            month: 'long'as const,
+            day: 'numeric'as const,
           };
           const formattedDate = new Date(xValue).toLocaleDateString('en-US', options);
           return formattedDate;
         },
-        label: (tooltipItem) => {
+        label: (tooltipItem: { formattedValue: string; }) => {
           return 'Close: $' + tooltipItem.formattedValue;
         },
-        labelColor: (context) => {
+        labelColor: () => {
           return {
             borderColor: 'rgba(54, 162, 235, 0.2)',
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
