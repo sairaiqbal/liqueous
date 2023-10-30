@@ -33,7 +33,7 @@
   /* Header */
 
   header .menus {
-      @apply fixed top-0 z-[52] h-screen w-full max-w-sm gap-9 bg-white transition-all duration-1000 ltr:-right-full rtl:-left-full dark:bg-gray-dark lg:static lg:h-auto lg:max-w-none lg:bg-transparent dark:lg:bg-transparent;
+      @apply fixed top-0 z-[52] h-screen w-full max-w-sm gap-9 right-0 bg-white ltr:-right-full rtl:-left-full dark:bg-gray-dark lg:static lg:h-auto lg:max-w-none lg:bg-transparent dark:lg:bg-transparent ;
   }
   header .menus > ul {
       @apply relative flex  flex-col divide-y divide-gray/10  font-bold text-black  lg:flex-row lg:items-center lg:gap-11 lg:divide-y-0  lg:p-0 lg:text-white;

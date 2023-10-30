@@ -1,7 +1,9 @@
 import Link from "next/link";
 import React from "react";
+import NewsLetter from "./NewsLetter";
 
 const Footer = () => {
+ 
   const legalText = `The information contained herein is presented solely for the purposes of discussion and under no circumstances should this be considered an offer to buy or a solicitation of an offer to sell any security. Liqueous LP is not a registered securities broker-dealer or an investment adviser with the U.S. Securities and Exchange Commission (the “SEC”) or with any state securities regulatory authority. Liqueous LP, its managers or affiliates have not been registered and do not plan to be registered under the Investment Advisers Act of 1940 or any similar state or foreign securities laws. Liqueous LP is not registered under the Investment Company Act of 1940 or under any similar state or international securities laws. Liqueous LP does not offer any form of investment (buy or sell) advice, tax counseling, estate planning, or any other securities or financial advice whatsoever. No statements on this website or any verbal or written statement by any representative shall be construed as such advice. We are neither licensed nor qualified to provide investment advice.`;
   return (
     <footer className="mt-auto bg-white dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.03] dark:to-transparent">
@@ -187,9 +189,12 @@ const Footer = () => {
                 about our products
               </li>
             </ul>
-            <form>
+            {/* <form 
+            onSubmit={handleSubmit(onSubmit)}
+            >
               <div className="relative pt-6">
                 <input
+                {...register ( 'newsletter')}
                   type="email"
                   id="default-search"
                   className="block w-full p-4  text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -276,7 +281,8 @@ const Footer = () => {
                   </svg>
                 </button>
               </div>
-            </form>
+            </form> */}
+            <NewsLetter/>
           </div>
         </div>
       </div>
