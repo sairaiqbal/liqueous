@@ -3,7 +3,6 @@ export default async function generate_term_sheet(
   option_looking_for: string
 ) {
   let endPoint;
-  if (option_looking_for === "Financing") {
     //  endPoint = "confirm_borro_deal";
 
     const requestBody = {
@@ -24,5 +23,4 @@ export default async function generate_term_sheet(
       console.error("Error sending form  data to finalize Plan:", error);
       return {};
     }
-  }
 }

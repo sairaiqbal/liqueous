@@ -1,9 +1,9 @@
-export default async function confirmShares(formData: any) {
+export default async function confirmEquityLine(formData: any) {
     
      
     try {
       const response = await fetch(
-        '/api/quote/make_deal_plan',
+        '/api/quote/confirm_equity_line_deal',
         {
             headers: { "Content-Type": "application/json" },
             method: "POST",

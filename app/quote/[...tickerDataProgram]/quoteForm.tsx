@@ -8,6 +8,7 @@ import requestLoan from "@/app/Utils/requestLoan";
 import estimateLoan from "@/app/Utils/estimateLoan";
 import confirmShares from "@/app/Utils/confirmShares";
 import { useRouter, useSearchParams } from "next/navigation";
+import confirmEquityLine from "@/app/Utils/confirmEquityLine";
 
 interface ApiResponse {
   min_val: number;
@@ -16,7 +17,7 @@ interface ApiResponse {
 }
 interface QuoteFormProps {
   setConfirm: (value: boolean) => void;
-  setResponse: (value: { id: string; plans: [] }) => void;
+  setResponse: (value: { id: string; plans: [], user_exists: ""}) => void;
   setId: (value: string) => void;
   setOptionLookingFor: (value: string) => void;
 
@@ -98,6 +99,8 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
     if (name != null || name != undefined) {
       setQueryParams(true);
     }
+
+    
   }, [ticker]);
 
   const onSubmit = async (data: any) => {
@@ -128,9 +131,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         const apiRes = await requestLoan(formData);
         setShowForm(false);
         setRes(apiRes);
+        if ( data.option_looking_for !== "EquityLine"){
+          console.log ('option',data.option_looking_for)
         const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
         setEstimateValue(estimateRes.estimated_loan);
         setValue("estimated_loan", estimateRes.estimated_loan);
+        }
       } else if (queryParams) {
         delete data.who;
         console.log(
@@ -165,9 +171,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         const apiRes = await requestLoan(formData);
         setShowForm(false);
         setRes(apiRes);
+        if ( data.option_looking_for || pathnameParts[4] !== "EquityLine"){
         const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
         setEstimateValue(estimateRes.estimated_loan);
         setValue("estimated_loan", estimateRes.estimated_loan);
+        }
+       
       }
       // const apiRes = await requestLoan(formData);
       // setShowForm(false);
@@ -180,6 +189,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
       if (data.who === "for someone else") {
         agentFee = data.agent_fee;
       }
+      if(data.option_looking_for || pathnameParts[4] !== "EquityLine") {
       const formData = {
         estimated_loan: data.estimated_loan,
         requested_shares: data.requested_shares.toString(),
@@ -187,12 +197,30 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         agent_fee: agentFee,
         id: res?.id,
       };
-      console.log("who is ", data.who);
+      console.log("who is ", formData);
       const apiRess = await confirmShares(formData);
       setConfirm(true);
       setResponse(apiRess);
       // console.log("Form 2 data :",apiRess);
       setId(apiRess.id);
+    }
+    else {
+      const formData = {
+        who: data.who,
+        agent_fee: agentFee,
+        id: res?.id,
+        option_looking_for: data.option_looking_for,
+        stock: data.stock,
+      };
+      console.log("who is ", formData);
+      const apiRess = await confirmEquityLine(formData);
+      setConfirm(false);
+      setResponse(apiRess);
+      console.log("equi",apiRess.user_exists == "false" ? "nu" : "ou")
+      router.push(`/congratulations/${apiRess.user_exists == "false" ? "nu" : "ou"}/${pathnameParts[4]}/${formData.id}`)
+      // console.log("Form 2 data :",apiRess);
+      setId(apiRess.id);
+    }
     }
   };
 
@@ -482,7 +510,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
 
                       {pathnameParts[4] !== "Financing" &&
                       pathnameParts[4] !== "Sale" &&
-                      pathnameParts[4] !== "Equity" ? (
+                      pathnameParts[4] !== "EquityLine" ? (
                         <div className="relative mb-6">
                           <label
                             htmlFor="option_looking_for"
@@ -519,7 +547,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           </label>
                         </div>
                       ) : null}
-                      {radioSelected || pathnameParts[4] ? (
+                      {radioSelected || pathnameParts[4] != "EquityLine" ? (
                         <div className="relative mb-6">
                           <label
                             className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
@@ -670,6 +698,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           />
                         </div>
                       )}
+                      {pathnameParts[4] != "EquityLine" ? ( 
                       <div>
                         <div className="relative">
                           <label
@@ -724,7 +753,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           </div>
                           <div className="text-right">Max</div>
                         </div>
-                      </div>
+                      </div> ) : null }
                     </div>
                     {/* <div className="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
                       <div className="flex justify-center">
