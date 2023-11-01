@@ -3,13 +3,13 @@ import React from "react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import {
-  getAuth,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
-  ConfirmationResult,
-} from "firebase/auth";
-import firebaseApp from "@/firebaseConfig";
+// import {
+//   getAuth,
+//   RecaptchaVerifier,
+//   signInWithPhoneNumber,
+//   ConfirmationResult,
+// } from "firebase/auth";
+// import firebaseApp from "@/firebaseConfig";
 const CreateAccount = () => {
   const {
     control: control2,
@@ -35,12 +35,12 @@ const CreateAccount = () => {
   const [otp, setOtp] = useState(false);
   const [otpError, setOtpError] = useState(null);
 
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [firebaseError, setFirebaseError] = useState("");
-  const [otpVerifier, setOtpVerifier] = useState<null | ConfirmationResult>(
-    null
-  );
+  // const [loading, setLoading] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [firebaseError, setFirebaseError] = useState("");
+  // const [otpVerifier, setOtpVerifier] = useState<null | ConfirmationResult>(
+  //   null
+  // );
 
   const onSelectBusiness = (selectedType: string) => {
     // Clear any existing validation rules for business-specific fields
@@ -97,58 +97,58 @@ const CreateAccount = () => {
     }
 
     const phone = `${payload.phone}`;
-    sendFirebaseOTP(phone, () => {
-      setTimeout(() => {
-        // Replace 'enter-otp' with the desired scroll target ID
-        // Implement your scroll function
-      }, 100);
-    });
+    // sendFirebaseOTP(phone, () => {
+    //   setTimeout(() => {
+    //     // Replace 'enter-otp' with the desired scroll target ID
+    //     // Implement your scroll function
+    //   }, 100);
+    // });
   };
 
   // const auth = getAuth(firebaseApp);
-  const sendFirebaseOTP = (phone: string, callback: { (): void; (): void }) => {
-    const auth = getAuth(firebaseApp);
-    auth.useDeviceLanguage();
+  // const sendFirebaseOTP = (phone: string, callback: { (): void; (): void }) => {
+  //   const auth = getAuth(firebaseApp);
+  //   auth.useDeviceLanguage();
 
-    // Handle the Recaptcha
-    const recaptchaVerifier = new RecaptchaVerifier(
-      auth,
-      "recaptcha_container",
-      {
-        size: "invisible",
-        callback: (response: any) => {
-          console.log(
-            "reCAPTCHA solved, allow signInWithPhoneNumber",
-            response
-          );
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-        },
-      }
-    );
-    // console.log(recaptchaVerifier)
+  //   // Handle the Recaptcha
+  //   const recaptchaVerifier = new RecaptchaVerifier(
+  //     auth,
+  //     "recaptcha_container",
+  //     {
+  //       size: "invisible",
+  //       callback: (response: any) => {
+  //         console.log(
+  //           "reCAPTCHA solved, allow signInWithPhoneNumber",
+  //           response
+  //         );
+  //         // reCAPTCHA solved, allow signInWithPhoneNumber.
+  //       },
+  //     }
+  //   );
+  //   // console.log(recaptchaVerifier)
 
-    // setLoading(true);
-    setOtp(true);
+  //   // setLoading(true);
+  //   setOtp(true);
 
-    signInWithPhoneNumber(auth, phone, recaptchaVerifier)
-      .then((confirmationResult) => {
-        console.log("SMS verification code sent:", confirmationResult);
-        setOtpVerifier(confirmationResult);
+  //   signInWithPhoneNumber(auth, phone, recaptchaVerifier)
+  //     .then((confirmationResult) => {
+  //       console.log("SMS verification code sent:", confirmationResult);
+  //       setOtpVerifier(confirmationResult);
 
-        // SMS sent. Prompt the user to type the code from the message, then sign the user in with confirmationResult.confirm(code).
-        setLoading(false);
-        setShowPassword(true);
+  //       // SMS sent. Prompt the user to type the code from the message, then sign the user in with confirmationResult.confirm(code).
+  //       setLoading(false);
+  //       setShowPassword(true);
 
-        callback();
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error("Failed to send SMS verification code:", error);
-        setFirebaseError(
-          "Failed to send SMS verification code:" + error.message
-        );
-      });
-  };
+  //       callback();
+  //     })
+  //     .catch((error) => {
+  //       setLoading(false);
+  //       console.error("Failed to send SMS verification code:", error);
+  //       setFirebaseError(
+  //         "Failed to send SMS verification code:" + error.message
+  //       );
+  //     });
+  // };
 
   const onSubmitForm2 = (data: any) => {
     console.log("Form 2 Data:", data);

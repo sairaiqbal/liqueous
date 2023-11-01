@@ -15,7 +15,7 @@ interface TickerAreaProps {
   tickers: Ticker[];
 }
 
-const TickerArea: React.FC<TickerAreaProps> = async () => {
+const TickerArea = async () => {
   const tickerData: Ticker[] = await getTickerData();
 
   return (
