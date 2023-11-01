@@ -25,9 +25,9 @@ module.exports = {
         lg: '1024px',
         xl: '1142px',
     },
-    fontFamily: {
-        mulish: ['Mulish', 'sans-serif' ] ,
-    },
+    // fontFamily: {
+    //     mulish: ['Mulish', 'sans-serif' ] ,
+    // },
     colors: {
         transparent: 'transparent',
         current: 'currentColor',
@@ -49,6 +49,11 @@ module.exports = {
                 },
             },
         }),
+        fontFamily: {
+            mulish: ['var(--font-mulish)'],
+           
+          },
+     
     },
 },
 // eslint-disable-next-line no-undef

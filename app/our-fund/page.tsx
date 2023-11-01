@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
+import ApplyNowButton from '../components/ApplyNowButton';
+import App from 'next/app';
 
 const ourFund = () => {
   return (
@@ -37,7 +39,7 @@ const ourFund = () => {
                             and our
                             transaction partners.
                         </p>
-                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                        <ApplyNowButton />
                     </div>
 
                 </div>
@@ -70,7 +72,8 @@ const ourFund = () => {
                             reducing operational costs. </p>
 
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                        {/* <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link> */}
+                        <ApplyNowButton/>
                     </div>
                 </div>
                 <div className="lg:order-1 mx-auto  order:2 md:mx-0 ">
@@ -108,7 +111,8 @@ const ourFund = () => {
                             opportunities.
                         </p>
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                        {/* <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link> */}
+                        <ApplyNowButton />
                     </div>
                 </div>
                 <div className="order-2 mx-auto  md:order-2 md:mx-0">
@@ -148,7 +152,8 @@ const ourFund = () => {
                         </p>
 
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                        {/* <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link> */}
+                        <ApplyNowButton/>
                     </div>
                 </div>
                 <div className="lg:order-1 mx-auto  order:2 md:mx-0">
@@ -187,7 +192,8 @@ const ourFund = () => {
                         </p>
                         
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                        {/* <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link> */}
+                        <ApplyNowButton/>
                     </div>
                 </div>
                 <div className="order-2 mx-auto  md:order-2 md:mx-0">
@@ -253,7 +259,8 @@ const ourFund = () => {
                                 className="text-secondary dark:text-white">exceptional</span> value to our partners. Join us
                             on this
                             exciting journey towards a more sustainable future.</p>
-                            <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                            {/* <Link href="/get-estimate">{""}   <button  className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link> */}
+                            <ApplyNowButton/>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import ApplyNowButton from '../components/ApplyNowButton'
 
 const borro = () => {
   return (
@@ -60,8 +61,7 @@ const borro = () => {
 
                   </p>
 
-                  <Link href="/get-estimate/Financing"> <button type="button" className
-                    ="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                 <ApplyNowButton/>
                 </div>
               </div>
             </div>
@@ -127,8 +127,7 @@ const borro = () => {
                 <p>At Liqueous, we have pioneered a groundbreaking solution - BORRO - a liquidity solution that
                   allows you to retain beneficial ownership of your securities while accessing the liquidity you
                   need.</p>
-                <Link href="/get-estimate/Financing">  <button type="button" className
-                  ="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></Link>
+               <ApplyNowButton/>
 
               </div>
             </div>
@@ -262,8 +261,7 @@ const borro = () => {
 
                   {/* <!-- <a href="" className
                     ="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                  <Link href="/get-estimate/Financing">  <button type="button" className
-                    ="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></Link>
+                  <ApplyNowButton/>
                 </div>
               </div>
               <div className

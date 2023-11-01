@@ -2,6 +2,7 @@
 import Aos from 'aos';
 import Link from 'next/link'
 import React, { useEffect } from 'react'
+import ApplyNowButton from '../components/ApplyNowButton';
 
 const  FinancialSolutions= () => {
   useEffect(() => {
@@ -310,7 +311,7 @@ const  FinancialSolutions= () => {
                                         Experience the Liqueous
                                         difference today.</h5>
                               
-                                        <Link href="/get-estimate"> <button type="button" className="btn px-9 text-white rounded-full" >Apply Now</button></Link>
+                                        <ApplyNowButton/>
                             </div>
                         </div>
                     </div>

@@ -8,36 +8,41 @@ const Header: React.FC = () => {
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setHasScrolled(true);
-      } else {
-        setHasScrolled(false);
-      }
-    };
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
+      // Set the initial windowWidth on the client side
+      setWindowWidth(window.innerWidth);
+    }
+
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        if (window.scrollY > 0) {
+          setHasScrolled(true);
+        } else {
+          setHasScrolled(false);
+        }
+      };
+
+      const handleResize = () => {
         setWindowWidth(window.innerWidth);
+      };
+      if (typeof window !== "undefined") {
+        window.addEventListener("resize", handleResize);
+        // Attach the event listener for scroll as well if needed
+        // window.addEventListener("scroll", handleScroll);
+
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+          window.removeEventListener("resize", handleResize);
+        };
       }
-    };
-    // const handleResize = () => {
-    //   setWindowWidth(window.innerWidth);
-    // };
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.addEventListener("resize", handleResize);
-    };
+    }
   }, []);
 
   const toggleMenu = () => {
-    if (window.innerWidth < 1024) {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
       setShowMenu((prevShowMenu) => !prevShowMenu);
       console.log("showMenu", showMenu);
     } else {
@@ -209,26 +214,11 @@ const Header: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  {pathname == "/get-estimate" ? (
-                    <Link href="tel:+18665303357">
-                      <button
-                        type="button"
-                        className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
-                      >
-                        866-530-3357
-                        <p className="text-[0.6rem]">CALL US TODAY</p>
-                      </button>
-                    </Link>
-                  ) : (
-                    <Link href="/get-estimate">
-                      <button
-                        type="button"
-                        className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
-                      >
-                        GET A QUOTE TODAY
-                      </button>
-                    </Link>
-                  )}
+                  <Link href="tel:+18665303357">
+                    <button className="btn mx-auto block w-fit mr-auto ml-auto bg-primary text-white rounded-full py-2">
+                      866-530-3357<p className="text-[0.6rem]">CALL US TODAY</p>
+                    </button>
+                  </Link>
                 </li>
                 <li className="hidden lg:block">
                   <Link

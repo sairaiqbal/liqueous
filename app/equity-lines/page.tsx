@@ -2,6 +2,7 @@
 import Aos from 'aos';
 import Link from 'next/link'
 import React, { useEffect } from 'react'
+import ApplyNowButton from '../components/ApplyNowButton';
 
 const equityLines = () => {
   useEffect(() => {
@@ -48,7 +49,7 @@ const equityLines = () => {
 
                         </p>
 
-                        <Link href="/get-estimate">  <button type="button" className="btn my-5 px-9 text-white rounded-full" >Apply Now</button></Link>
+                    <ApplyNowButton/>
                     </div>
                 </div>
             </div>
@@ -102,7 +103,7 @@ const equityLines = () => {
                     </div>
                     <p>At <span className="text-primary">Liqueous</span>, we recognize these complexities and have
                         crafted a unique solution - Equity Lines of Credit (ELOC) - designed to equip businesses with the financial agility they need to seize growth opportunities and navigate market dynamics with confidence.</p>
-                        <Link href="/get-estimate">  <button type="button" className="btn mt-5  px-9 text-white rounded-full">Apply Now</button></Link>
+                        <ApplyNowButton/>
 
                 </div>
             </div>
@@ -317,7 +318,7 @@ calculate the dilution that your financing will cause. This level of predictabil
 
 
                         {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                        <Link href="/get-estimate"><button type="button" className="btn mt-5  px-9 text-white rounded-full" >Apply Now</button></Link>
+                        <ApplyNowButton/>
                     </div>
                 </div>
                 <div className="lg:order-1 mx-auto  order:2 md:mx-0 ">
