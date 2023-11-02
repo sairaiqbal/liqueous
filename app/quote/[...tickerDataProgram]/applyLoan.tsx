@@ -37,22 +37,24 @@ interface Plan {
 }
 const title =
   "The annual premium rate the shareholder pays to the purchaser in order to maintain the ability to buy the shares back at a specified price in a specified date.";
-let selectedPlanIndex = -1;
+// let selectedPlanIndex = -1;
 
-
-const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
+const ApplyLoan: React.FC<LoadingErrorProps> = ({ params }) => {
   const [error, setError] = useState<string | null>(null);
   const [confirm, setConfirm] = useState(false);
-  const [response, setResponse] = useState({ id: "", plans: [] ,user_exists: ""});
+  const [response, setResponse] = useState({
+    id: "",
+    plans: [],
+    user_exists: "",
+  });
   const [selectedPlanIndex, setSelectedPlanIndex] = useState(-1);
   const [proceed, setProceed] = useState(false);
   const pathname = usePathname();
   const pathnameParts = pathname.split("/");
-  const [dialog, setDialog] = useState(false);
+
   const [id, setId] = useState("");
   const [user, setUser] = useState({});
-  const [loadingSheet, setLoadingSheet] = useState(false);
-  const fadeDiv = useRef<HTMLDivElement | null>(null);
+
   const [optionLookingFor, setOptionLookingFor] = useState("");
   const [congratulations, setCongratulations] = useState(false);
   //   const option_looking_for = pathname.split("/").at(4);
@@ -62,34 +64,6 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
       setSelectedPlanIndex(-1); // If the same SVG is clicked again, hide the title
     } else {
       setSelectedPlanIndex(index); // Show the title for the clicked SVG
-    }
-  };
-
-  
-
-  const downloadTermSheet = async () => {
-    console.log("download")
-    setLoadingSheet(true);
-    if (fadeDiv.current) {
-      fadeDiv.current.style.opacity = "0.3";
-    }
-    try {
-      const pdfRes = await generate_term_sheet(id, optionLookingFor);
-       console.log("final response: ", pdfRes);
-
-      const url = pdfRes.pdf_file_url;
-      window.open(url, "_blank");
-      setLoadingSheet(false);
-      if (fadeDiv.current) {
-        fadeDiv.current.style.opacity = "";
-      }
-    } catch (error) {
-      // Handle error here
-      console.error("Error:", error);
-      setLoadingSheet(false);
-      if (fadeDiv.current) {
-        fadeDiv.current.style.opacity = "";
-      }
     }
   };
 
@@ -118,12 +92,12 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
   }, []);
 
   //  console.log("params recieved : ", params);
-  console.log("pathame", response)
-  if ( pathnameParts[4] === "EquityLine" && !congratulations){
-    console.log("resuser",response.user_exists)
-    setCongratulations(true)
-    console.log("cong",congratulations)
-   //<Link href={`/congratulations/${user}/${optionLookingFor}/${id}`}></Link>
+  console.log("pathame", response);
+  if (pathnameParts[4] === "EquityLine" && !congratulations) {
+    console.log("resuser", response.user_exists);
+    setCongratulations(true);
+    console.log("cong", congratulations);
+    //<Link href={`/congratulations/${user}/${optionLookingFor}/${id}`}></Link>
   }
   const tickerData = {
     code: params?.fundamentals?.General?.Code,
@@ -144,151 +118,151 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
     setUser(apiRes.user_exists);
     console.log("final response: ", user);
     setProceed(false);
-    
+
     //setDialog(true);
   };
 
   return (
     <div>
-     
-        <div className="lg:flex  w-full bg-gradient-to-t from-white/[55%] to-transparent ">
-          <section className=" lg:w-2/3 w-full  py-8 dark:bg-none">
-            <div className="heading text-left mt-8 mb-0 flex justify-center">
-              <div className="w-[85%]">
-                <div>
-                  <span className="text-primary text-xl uppercase font-bold">
-                    Access Your Liquidity Within 7 days through our Proprietary
-                    Borro Program
-                  </span>
-                  <h4 id="estimate-now"> Get an instant quote today! </h4>
-                  <p>
-                    Tap into your liquidity with our securities-backed loans at
-                    the lowest rates on the market. Simply fill out the form,
-                    get your quote, and apply to receive your funds in less than
-                    a week!
-                  </p>
-                </div>
+      <div className="lg:flex  w-full bg-gradient-to-t from-white/[55%] to-transparent ">
+        <section className=" lg:w-2/3 w-full  py-8 dark:bg-none">
+          <div className="heading text-left mt-8 mb-0 flex justify-center">
+            <div className="w-[85%]">
+              <div>
+                <span className="text-primary text-xl uppercase font-bold">
+                  Access Your Liquidity Within 7 days through our Proprietary
+                  Borro Program
+                </span>
+                <h4 id="estimate-now"> Get an instant quote today! </h4>
+                <p>
+                  Tap into your liquidity with our securities-backed loans at
+                  the lowest rates on the market. Simply fill out the form, get
+                  your quote, and apply to receive your funds in less than a
+                  week!
+                </p>
               </div>
             </div>
-            {/* <LoadingError></LoadingError> */}
-            <div>
-              {!params ? (
-                <div className="flex justify-center items-center h-20">
-                  {!error ? (
-                    <>
-                      <div className="border-4 border-t-4 border-gray-200 rounded-full w-12 h-12 animate-spin"></div>
-                      <span className="ml-2">Loading, Please wait ...</span>
-                    </>
-                  ) : (
-                    <div className="pt-10 flex min-h-[500px] items-center justify-center">
-                      <div className="p-5 text-center font-semibold">
-                        <p className="text-lg">{error}</p>
-                      </div>
+          </div>
+          {/* <LoadingError></LoadingError> */}
+          <div>
+            {!params ? (
+              <div className="flex justify-center items-center h-20">
+                {!error ? (
+                  <>
+                    <div className="border-4 border-t-4 border-gray-200 rounded-full w-12 h-12 animate-spin"></div>
+                    <span className="ml-2">Loading, Please wait ...</span>
+                  </>
+                ) : (
+                  <div className="pt-10 flex min-h-[500px] items-center justify-center">
+                    <div className="p-5 text-center font-semibold">
+                      <p className="text-lg">{error}</p>
                     </div>
-                  )}
-                </div>
-              ) : (
-                <div className="flex justify-center p-8 rounded-[18px]">
-                  <div
-                    className="rounded-[18px] w-full bg-white p-4 lg:pl-8 dark:bg-black"
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                  >
-                    <div className="flex justify-between">
-                      <div className=" gap-2.5">
-                        {!!tickerData.logo ? (
-                          <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full">
-                            <img src={tickerData.logo} />
-                          </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex justify-center p-8 rounded-[18px]">
+                <div
+                  className="rounded-[18px] w-full bg-white p-4 lg:pl-8 dark:bg-black"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+                >
+                  <div className="flex justify-between">
+                    <div className=" gap-2.5">
+                      {!!tickerData.logo ? (
+                        <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full">
+                          <img src={tickerData.logo} />
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center w-12 min-w-8 h-12 min-h-8 mr-1 rounded-full text-lg uppercase text-white bg-gray-dark dark:text-gray-dark dark:bg-gray">
+                          {!!tickerData.code ? tickerData.alphabet : ""}
+                        </div>
+                      )}
+
+                      <h4 className="text-lg font-bold text-black dark:text-white pt-4">
+                        {tickerData.code}
+                      </h4>
+                      <span className="rounded bg-[rgba(198,198,198,0.4)] py-1 px-[6px] text-[10px] font-semibold leading-3 text-black dark:text-white">
+                        {tickerData.name}
+                      </span>
+                    </div>
+                    <div>
+                      <svg
+                        width="48"
+                        height="48"
+                        viewBox="0 0 48 48"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={`tickerData.growth >= 0 ? '' : 'rotate-180'`}
+                      >
+                        {tickerData.growth !== undefined &&
+                        tickerData.growth >= 0 ? (
+                          <path
+                            d="M17 19.9815L24 14M24 14L31 19.9815M24 14V33"
+                            stroke="#12AF97"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
                         ) : (
-                          <div className="flex items-center justify-center w-12 min-w-8 h-12 min-h-8 mr-1 rounded-full text-lg uppercase text-white bg-gray-dark dark:text-gray-dark dark:bg-gray">
-                            {!!tickerData.code ? tickerData.alphabet : ""}
-                          </div>
+                          <path
+                            d="M17 19.9815L24 14M24 14L31 19.9815M24 14V33"
+                            stroke="#FF0000"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
                         )}
-
-                        <h4 className="text-lg font-bold text-black dark:text-white pt-4">
-                          {tickerData.code}
-                        </h4>
-                        <span className="rounded bg-[rgba(198,198,198,0.4)] py-1 px-[6px] text-[10px] font-semibold leading-3 text-black dark:text-white">
-                          {tickerData.name}
-                        </span>
-                      </div>
-                      <div>
-                        <svg
-                          width="48"
-                          height="48"
-                          viewBox="0 0 48 48"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={`tickerData.growth >= 0 ? '' : 'rotate-180'`}
-                        >
-                          {tickerData.growth !== undefined &&
-                          tickerData.growth >= 0 ? (
-                            <path
-                              d="M17 19.9815L24 14M24 14L31 19.9815M24 14V33"
-                              stroke="#12AF97"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          ) : (
-                            <path
-                              d="M17 19.9815L24 14M24 14L31 19.9815M24 14V33"
-                              stroke="#FF0000"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          )}
-                        </svg>
-                      </div>
+                      </svg>
                     </div>
-                    <div className="my-4 h-[1px] bg-[#11011E] opacity-5"></div>
-                    <div className="lg:flex  justify-between gap-2">
-                      <div>
-                        <h4 className="text-lg font-bold text-black dark:text-white">
-                          Last Close Price: $
-                          {tickerData.price !== undefined
-                            ? tickerData.price | 0
-                            : 0}
-                        </h4>
+                  </div>
+                  <div className="my-4 h-[1px] bg-[#11011E] opacity-5"></div>
+                  <div className="lg:flex  justify-between gap-2">
+                    <div>
+                      <h4 className="text-lg font-bold text-black dark:text-white">
+                        Last Close Price: $
+                        {tickerData.price !== undefined
+                          ? tickerData.price | 0
+                          : 0}
+                      </h4>
 
-                        {params?.market_cap && params.market_cap > 0 && (
-                          <h3 className="mt-4 text-xl font-bold leading-[25px] text-black dark:text-white">
-                            Market Cap: {params.market_cap.toLocaleString()}
-                          </h3>
-                        )}
+                      {params?.market_cap && params.market_cap > 0 && (
+                        <h3 className="mt-4 text-xl font-bold leading-[25px] text-black dark:text-white">
+                          Market Cap: {params.market_cap.toLocaleString()}
+                        </h3>
+                      )}
 
-                        <h4
-                          className={`mt-4 text-lg font-semibold ${
-                            params?.growth && params.growth >= 0
-                              ? "text-[#12AF97]"
-                              : "text-[#FF0000]"
-                          }`}
-                        >
-                          Growth: {tickerData.growth}%
-                        </h4>
-                      </div>
-                      <div className="flex flex-col flex-auto">
-                        <LineChart
-                          data={params?.series && params.series[0].data}
-                        />
-                      </div>
+                      <h4
+                        className={`mt-4 text-lg font-semibold ${
+                          params?.growth && params.growth >= 0
+                            ? "text-[#12AF97]"
+                            : "text-[#FF0000]"
+                        }`}
+                      >
+                        Growth: {tickerData.growth}%
+                      </h4>
+                    </div>
+                    <div className="flex flex-col flex-auto">
+                      <LineChart
+                        data={params?.series && params.series[0].data}
+                      />
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
-          </section>
-          <QuoteForm
-            setConfirm={setConfirm}
-            setResponse={setResponse}
-            setId={setId}
-            setOptionLookingFor={setOptionLookingFor}
-          />
-        </div>
-     
-        <>
+              </div>
+            )}
+          </div>
+        </section>
+        <QuoteForm
+          setConfirm={setConfirm}
+          setResponse={setResponse}
+          setId={setId}
+          setOptionLookingFor={setOptionLookingFor}
+        />
+      </div>
+
+      <>
+        {confirm && (
           <section id="plan-cards" className="py-8 ">
             <div className="container">
               <div className="heading text-center mt-8">
@@ -322,17 +296,17 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                   modules={[Navigation]}
                   breakpoints={{
                     320: {
-                        slidesPerView: 1,
-                      },
-                      600: {
-                        slidesPerView: 2,
-                      },
-                      1000: {
-                        slidesPerView: 3,
-                      },
-                      1600: {
-                        slidesPerView: 3,
-                      },
+                      slidesPerView: 1,
+                    },
+                    600: {
+                      slidesPerView: 2,
+                    },
+                    1000: {
+                      slidesPerView: 3,
+                    },
+                    1600: {
+                      slidesPerView: 3,
+                    },
                   }}
                 >
                   {response?.plans?.map((plan: any, index) => (
@@ -571,32 +545,38 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
                               </ul>
                               <div className="mt-auto border-t-[3px] border-[#BBC0D0]/50 pt-7">
                                 <div className="mb-3 flex flex-col items-center justify-center sm:flex-row ">
-                                  <Link href={`/congratulations/${response.user_exists == "false" ? "nu" : "ou"}/${optionLookingFor}/${id}`}>
-                                  <button
-                                    onClick={() => choosePlan(plan)}
-                                    className="btn text-l text-white group-hover:bg-white group-hover:text-primary dark:text-black xl:w-44 rounded-full"
+                                  <Link
+                                    href={`/congratulations/${
+                                      response.user_exists == "false"
+                                        ? "nu"
+                                        : "ou"
+                                    }/${optionLookingFor}/${id}`}
                                   >
-                                    Proceed
-                                    {proceed && (
-                                      <svg
-                                        aria-hidden="true"
-                                        role="status"
-                                        className="inline w-4 h-4 ml-3 mr-3 text-white animate-spin"
-                                        viewBox="0 0 100 101"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                          fill="#E5E7EB"
-                                        />
-                                        <path
-                                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                          fill="currentColor"
-                                        />
-                                      </svg>
-                                    )}
-                                  </button>
+                                    <button
+                                      onClick={() => choosePlan(plan)}
+                                      className="btn text-l text-white group-hover:bg-white group-hover:text-primary dark:text-black xl:w-44 rounded-full"
+                                    >
+                                      Proceed
+                                      {proceed && (
+                                        <svg
+                                          aria-hidden="true"
+                                          role="status"
+                                          className="inline w-4 h-4 ml-3 mr-3 text-white animate-spin"
+                                          viewBox="0 0 100 101"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                            fill="#E5E7EB"
+                                          />
+                                          <path
+                                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                            fill="currentColor"
+                                          />
+                                        </svg>
+                                      )}
+                                    </button>
                                   </Link>
                                 </div>
                               </div>
@@ -610,9 +590,10 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
               </div>
             </div>
           </section>
-        </>
+        )}
+      </>
     </div>
   );
 };
 
-export default ChartForm;
+export default ApplyLoan;

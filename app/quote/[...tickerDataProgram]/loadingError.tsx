@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
-import LineChart from "./lineChart";
+import LineChart from "./applyLoan";
 // import getTickerDetailById from "@/app/Utils/getTickerDetailById";
 import AOS from "aos";
 import "aos/dist/aos.css";
