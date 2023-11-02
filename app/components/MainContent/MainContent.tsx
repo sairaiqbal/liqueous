@@ -53,7 +53,7 @@ const MainContent = () => {
   };
   return (
     <div>
-      <section className="bg-[url(/assets/images/service-bg.png)] bg-cover bg-center bg-no-repeat py-16 dark:bg-none lg:py-[100px]">
+      {/* <section className="bg-[url(/assets/images/service-bg.png)] bg-cover bg-center bg-no-repeat py-16 dark:bg-none lg:py-[100px]">
         <div className="container">
           <div className="heading text-center mt-2 md:mt-4 lg:mt-0 ">
             <h4>
@@ -206,7 +206,7 @@ const MainContent = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="bg-gradient-to-b from-white/[55%] to-transparent py-14 dark:from-white/5 lg:pb-[100px]">
         <div className="container">
           <div className="heading text-center">
@@ -465,6 +465,160 @@ const MainContent = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-[url(/assets/images/service-bg.png)] bg-cover bg-center bg-no-repeat py-16 dark:bg-none lg:py-[100px]">
+        <div className="container">
+          <div className="heading text-center mt-2 md:mt-4 lg:mt-0 ">
+            <h4>
+              Bespoke <span className="text-primary">Liquidity Experts</span>
+            </h4>
+            <p>Review our range of liquidity options:</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
+            <div data-aos="fade-up" data-aos-duration="1000">
+              <div
+                className="h-full overflow-hidden group rounded-3xl border-2 border-white bg-white p-6 transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary"
+                style={boxShadowStyle}
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.09091 1.27273C5.09091 0.572727 4.51818 0 3.81818 0C3.11818 0 2.54545 0.572727 2.54545 1.27273V6.36364H0V14H7.63636V6.36364H5.09091V1.27273ZM10.1818 19.0909C10.1818 20.7455 11.2509 22.1455 12.7273 22.68V28H15.2727V22.68C16.7491 22.1582 17.8182 20.7582 17.8182 19.0909V16.5455H10.1818V19.0909ZM0 19.0909C0 20.7455 1.06909 22.1455 2.54545 22.68V28H5.09091V22.68C6.56727 22.1455 7.63636 20.7455 7.63636 19.0909V16.5455H0V19.0909ZM25.4545 6.36364V1.27273C25.4545 0.572727 24.8818 0 24.1818 0C23.4818 0 22.9091 0.572727 22.9091 1.27273V6.36364H20.3636V14H28V6.36364H25.4545ZM15.2727 1.27273C15.2727 0.572727 14.7 0 14 0C13.3 0 12.7273 0.572727 12.7273 1.27273V6.36364H10.1818V14H17.8182V6.36364H15.2727V1.27273ZM20.3636 19.0909C20.3636 20.7455 21.4327 22.1455 22.9091 22.68V28H25.4545V22.68C26.9309 22.1582 28 20.7582 28 19.0909V16.5455H20.3636V19.0909Z"
+                    fill="#5C96FD"
+                  />
+                </svg>
+
+                <div>
+                  {" "}
+                  <Link
+                    href="/borro-liqueous"
+                    className=" my-8 inline-block text-[22px] font-extrabold text-black dark:text-white dark:group-hover:text-black hover:scale-110 hover:text-secondary duration-200"
+                  >
+                    BORRO
+                    <br />
+                    by Liqueous&trade;
+                  </Link>
+                </div>
+
+                <p className="mb-10 text-lg font-semibold transition dark:group-hover:text-black">
+                  6 month - 10 year liquidity solution designed to access
+                  liquidity in non-marginable securities while maintaining
+                  beneficial ownership during the term period.
+                </p>
+              </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000">
+              <div
+                className="h-full overflow-hidden group rounded-3xl border-2 border-white bg-white p-6 transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary"
+                style={boxShadowStyle}
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M24.8889 0H3.11111C1.4 0 0 1.4 0 3.11111V24.8889C0 26.6 1.4 28 3.11111 28H24.8889C26.6 28 28 26.6 28 24.8889V3.11111C28 1.4 26.6 0 24.8889 0ZM9.33333 21.7778H6.22222V10.8889H9.33333V21.7778ZM15.5556 21.7778H12.4444V6.22222H15.5556V21.7778ZM21.7778 21.7778H18.6667V15.5556H21.7778V21.7778Z"
+                    fill="#5C96FD"
+                  />
+                </svg>
+                <div>
+                  {" "}
+                  <Link
+                    href="/private-block"
+                    className="my-8 inline-block text-[22px] font-extrabold text-black dark:text-white dark:group-hover:text-black hover:scale-110 hover:text-secondary duration-200"
+                  >
+                    Private
+                    <br />
+                    Block Purchase
+                  </Link>
+                </div>
+
+                <p className="mb-10 text-lg font-semibold transition dark:group-hover:text-black">
+                  Safeguard your core position with our private block purchase
+                  service designed to mitigate information leakage while
+                  providing instant liquidity.
+                </p>
+              </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000">
+              <div
+                className="h-full overflow-hidden group rounded-3xl border-2 border-white bg-white p-6 transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary"
+                style={boxShadowStyle}
+              >
+                <svg
+                  width="21"
+                  height="28"
+                  viewBox="0 0 21 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.375 9.33333H17.0625V6.66667C17.0625 2.98667 14.1225 0 10.5 0C6.8775 0 3.9375 2.98667 3.9375 6.66667V9.33333H2.625C1.18125 9.33333 0 10.5333 0 12V25.3333C0 26.8 1.18125 28 2.625 28H18.375C19.8188 28 21 26.8 21 25.3333V12C21 10.5333 19.8188 9.33333 18.375 9.33333ZM10.5 21.3333C9.05625 21.3333 7.875 20.1333 7.875 18.6667C7.875 17.2 9.05625 16 10.5 16C11.9438 16 13.125 17.2 13.125 18.6667C13.125 20.1333 11.9438 21.3333 10.5 21.3333ZM14.5688 9.33333H6.43125V6.66667C6.43125 4.38667 8.25562 2.53333 10.5 2.53333C12.7444 2.53333 14.5688 4.38667 14.5688 6.66667V9.33333Z"
+                    fill="#5C96FD"
+                  />
+                </svg>
+                <div>
+                  <Link
+                    href="/equity-lines"
+                    className="my-8 inline-block text-[22px] font-extrabold text-black dark:text-white dark:group-hover:text-black hover:scale-110 hover:text-secondary duration-200"
+                  >
+                    Equity Lines
+                    <br /> of Credit
+                  </Link>
+                </div>
+
+                <p className="mb-10 text-lg font-semibold transition dark:group-hover:text-black">
+                  Our fund offers bespoke equity lines of credit expertly
+                  crafted to finance publicly traded companies through
+                  registration statements.
+                </p>
+              </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000">
+              <div
+                className="h-full overflow-hidden group rounded-3xl border-2 border-white bg-white p-6 transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary"
+                style={boxShadowStyle}
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.6 10.024V0C5.6 0.7 0 6.706 0 14C0 21.294 5.6 27.3 12.6 28V17.976C11.2 17.402 9.8 15.848 9.8 14C9.8 12.152 11.2 10.598 12.6 10.024ZM18.004 12.6H28C27.328 5.95 22.4 0.658 15.4 0V10.024C16.8 10.444 17.528 11.396 18.004 12.6ZM15.4 17.976V28C22.4 27.342 27.328 22.05 28 15.4H18.004C17.528 16.604 16.8 17.556 15.4 17.976Z"
+                    fill="#5C96FD"
+                  />
+                </svg>
+                <div>
+                  <Link
+                    href="/financial-solution"
+                    className="my-8 inline-block text-[22px] font-extrabold text-black dark:text-white dark:group-hover:text-black hover:scale-110 hover:text-secondary duration-200"
+                  >
+                    Comprehensive
+                    <br />
+                    Financial Solutions
+                  </Link>
+                </div>
+
+                <p className="mb-10 text-lg font-semibold transition dark:group-hover:text-black">
+                  Embrace the full spectrum of financial possibilities with our
+                  diverse range of tailored solutions - From venture debt and
+                  equity investments to toxic debt refinancing.
+                </p>
               </div>
             </div>
           </div>
