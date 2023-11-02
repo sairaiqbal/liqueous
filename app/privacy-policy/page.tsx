@@ -186,3 +186,10 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
+
+export function generateMetadata() {
+  return {
+    title: "Privacy Policy | Liqueous",
+    description: "Privacy Policy Page",
+  };
+}

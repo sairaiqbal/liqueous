@@ -30,11 +30,18 @@ ChartJS.register(
   TimeScale
 );
 
+interface DataPoint {
+  x: number; // Timestamp
+  y: number; // Numeric value
+}
 
-const LineChart = ({ data }: { data: any[] }) => {
- 
-const labels = data?.map((dataPoint: { x:  number }) => new Date(dataPoint.x));
-const dataValues = data?.map((dataPoint: { y: number }) => dataPoint.y);
+interface LineChartProps {
+  data: DataPoint[];
+}
+
+const LineChart: React.FC<LineChartProps> = ({ data }) => {
+  const labels = data?.map((dataPoint: DataPoint) => new Date(dataPoint.x));
+  const dataValues = data?.map((dataPoint: DataPoint) => dataPoint.y);
 
 // const chartData:ChartData = {
 //   labels: labels,

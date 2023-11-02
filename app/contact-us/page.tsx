@@ -494,3 +494,10 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
+
+export function generateMetadata(){
+return{
+  title:"Contact Us | Liqueous",
+  description:"contact us page"
+}
+}

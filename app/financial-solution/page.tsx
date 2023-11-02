@@ -331,3 +331,9 @@ const  FinancialSolutions= () => {
 }
 
 export default FinancialSolutions
+export function generateMetadata() {
+    return {
+      title: "Financial Solutions | Liqueous",
+      description: "Financial Solutions Page",
+    };
+  }

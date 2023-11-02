@@ -489,3 +489,9 @@ const Quote: React.FC<QuoteProps> = async ({ params }) => {
 };
 
 export default Quote;
+export function generateMetadata() {
+  return {
+    title: "Quote | Liqueous",
+    description: "Quote Page",
+  };
+}

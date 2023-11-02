@@ -380,3 +380,9 @@ calculate the dilution that your financing will cause. This level of predictabil
 }
 
 export default equityLines
+export function generateMetadata() {
+    return {
+      title: "Equity Lines of Credit | Liqueous",
+      description: "Equity Lines of Credit Page",
+    };
+  }

@@ -437,3 +437,9 @@ const privateBlock = () => {
 };
 
 export default privateBlock;
+export function generateMetadata() {
+  return {
+    title: "Private Block Purchase | Liqueous",
+    description: "Private Block Purchase Page",
+  };
+}

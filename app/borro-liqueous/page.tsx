@@ -337,3 +337,9 @@ const borro = () => {
 }
 
 export default borro
+export function generateMetadata() {
+  return {
+    title: "Borro by Liqueous | Liqueous",
+    description: "Borro by Liqueous Page",
+  };
+}

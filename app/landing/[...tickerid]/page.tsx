@@ -4,6 +4,7 @@ import Link from "next/link";
 import LandingCards from "./landingCard";
 import DynamicTicker from "@/app/components/DynamicTicker/DynamicTicker";
 import DynamicGraph from "@/app/components/DynamicGraph/DynamicGraph";
+import Head from "next/head";
 interface QuoteProps {
   params: {
     tickerid: string;
@@ -32,7 +33,11 @@ const Landing: React.FC<QuoteProps> = async ({ params }) => {
 
   
 return (
-    <>
+    <> <Head>
+    {/* Update the title and meta description for this page */}
+    <title>hello</title>
+    <meta name="description" content={"hi"} />
+  </Head>
         <div className="bg-white">
             <DynamicTicker ticker={tickerData} />
             <div>
@@ -73,3 +78,9 @@ return (
 
 }
 export default Landing;
+export function generateMetadata() {
+    return {
+      title: "Stock Loan | Liqueous",
+      description: "Stock Loan Page",
+    };
+  }
