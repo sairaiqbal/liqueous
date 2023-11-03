@@ -51,11 +51,10 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
   const [proceed, setProceed] = useState(false);
   const pathname = usePathname();
   const pathnameParts = pathname.split("/");
-  const [dialog, setDialog] = useState(false);
+
   const [id, setId] = useState("");
   const [user, setUser] = useState({});
-  const [loadingSheet, setLoadingSheet] = useState(false);
-  const fadeDiv = useRef<HTMLDivElement | null>(null);
+
   const [optionLookingFor, setOptionLookingFor] = useState("");
   const [congratulations, setCongratulations] = useState(false);
   //   const option_looking_for = pathname.split("/").at(4);
@@ -75,32 +74,6 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
     }
   }
 
-  const downloadTermSheet = async () => {
-    console.log("download");
-    setLoadingSheet(true);
-    if (fadeDiv.current) {
-      fadeDiv.current.style.opacity = "0.3";
-    }
-    try {
-      const pdfRes = await generate_term_sheet(id, optionLookingFor);
-      console.log("final response: ", pdfRes);
-
-      const url = pdfRes.pdf_file_url;
-      window.open(url, "_blank");
-      setLoadingSheet(false);
-      if (fadeDiv.current) {
-        fadeDiv.current.style.opacity = "";
-      }
-    } catch (error) {
-      // Handle error here
-      console.error("Error:", error);
-      setLoadingSheet(false);
-      if (fadeDiv.current) {
-        fadeDiv.current.style.opacity = "";
-      }
-    }
-  };
-
   const closeTitleContainer = (index: number) => {
     // selectedPlanIndex = -1;
     setSelectedPlanIndex(-1);
@@ -116,7 +89,7 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
   }, [params]);
 
   useEffect(() => {
-    console.log("plans response ", response);
+    // console.log("plans response ", response);
     AOS.init({
       // Customize AOS configuration here
       duration: 1000, // Animation duration (in milliseconds)
@@ -126,11 +99,11 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
   }, []);
 
   //  console.log("params recieved : ", params);
-  console.log("pathame", response);
+  // console.log("pathame", response);
   if (pathnameParts[4] === "EquityLine" && !congratulations) {
-    console.log("resuser", response.user_exists);
+    // console.log("resuser", response.user_exists);
     setCongratulations(true);
-    console.log("cong", congratulations);
+    // console.log("cong", congratulations);
     //<Link href={`/congratulations/${user}/${optionLookingFor}/${id}`}></Link>
   }
   const tickerData = {
@@ -150,7 +123,7 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
     // console.log("id is ",id);
     const apiRes = await finalizePlan(optionLookingFor, id, plan?.term_table);
     setUser(apiRes.user_exists);
-    console.log("final response: ", user);
+    // console.log("final response: ", user);
     setProceed(false);
 
     //setDialog(true);
@@ -294,331 +267,337 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
           setOptionLookingFor={setOptionLookingFor}
         />
       </div>
-
-      <>
-        <section id="plan-cards" className="py-8 ">
-          <div className="container">
-            <div className="heading text-center mt-8">
-              <div className="flex justify-center">
-                <svg
-                  width="41"
-                  height="24"
-                  viewBox="0 0 41 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M28.042 0L32.629 4.58L22.854 14.34L14.842 6.34L0 21.18L2.824 24L14.842 12L22.854 20L35.473 7.42L40.06 12V0H28.042Z"
-                    fill="#5C96FD"
-                  />
-                </svg>
+      {confirm && (
+        <>
+          <section id="plan-cards" className="py-8 ">
+            <div className="container">
+              <div className="heading text-center mt-8">
+                <div className="flex justify-center">
+                  <svg
+                    width="41"
+                    height="24"
+                    viewBox="0 0 41 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M28.042 0L32.629 4.58L22.854 14.34L14.842 6.34L0 21.18L2.824 24L14.842 12L22.854 20L35.473 7.42L40.06 12V0H28.042Z"
+                      fill="#5C96FD"
+                    />
+                  </svg>
+                </div>
+                <h4>
+                  Choose <span className="text-primary">Affordable</span> Plan
+                </h4>
               </div>
-              <h4>
-                Choose <span className="text-primary">Affordable</span> Plan
-              </h4>
-            </div>
 
-            <div className=" relative grid grid-cols-1 gap-[30px] md:grid-cols-1 lg:grid-cols-1 px-[1.3rem] z-10 ">
-              <Swiper
-                className="w-full py-4"
-                slidesPerView="auto"
-                speed={2500}
-                loop={false}
-                spaceBetween={30}
-                navigation={true}
-                modules={[Navigation]}
-                breakpoints={{
-                  320: {
-                    slidesPerView: 1,
-                  },
-                  600: {
-                    slidesPerView: 2,
-                  },
-                  1000: {
-                    slidesPerView: 3,
-                  },
-                  1600: {
-                    slidesPerView: 3,
-                  },
-                }}
-              >
-                {response?.plans?.map((plan: any, index) => (
-                  <>
-                    <div key={index}>
-                      <SwiperSlide>
-                        <div
-                          className="relative group flex flex-col rounded-lg border-4 border-primary bg-white p-6 px-4 transition hover:bg-primary  dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.01] dark:to-transparent dark:drop-shadow-none dark:hover:border-gray-dark dark:hover:bg-gray-dark sm:px-6"
-                          data-aos="fade-up"
-                          data-aos-duration="1000"
-                        >
-                          <div className="mb-8">
-                            <h3 className="text-[22px] font-black text-black dark:text-white">
-                              {plan?.term_table}
-                            </h3>
-                          </div>
-                          <div>
-                            <ul className="space-y-5 pb-7 text-sm font-bold group-hover:text-white">
-                              <li className="flex items-center">
-                                <div>
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <circle
-                                      cx="8"
-                                      cy="8"
-                                      r="8"
-                                      fill="#45B649"
-                                    />
-                                    <path
-                                      d="M5.11438 8.11438L7 10L10.7712 6.22876"
-                                      stroke="white"
-                                      strokeWidth="1.6"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
-                                </div>
-                                <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
-                                  Premium Value:{" "}
-                                  {plan?.ltv_multiplier.toFixed(0)}%
-                                </p>
-                              </li>
-
-                              <li className="flex items-center">
-                                <div>
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <circle
-                                      cx="8"
-                                      cy="8"
-                                      r="8"
-                                      fill="#45B649"
-                                    />
-                                    <path
-                                      d="M5.11438 8.11438L7 10L10.7712 6.22876"
-                                      stroke="white"
-                                      strokeWidth="1.6"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
-                                </div>
-                                <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
-                                  Gross Proceeds: $
-                                  {plan?.gross_proceeds.toFixed(2)}
-                                </p>
-                              </li>
-
-                              <div>
-                                {plan.origination_fee > 0 ? (
-                                  <>
-                                    <li className="flex items-center">
-                                      <div>
-                                        <svg
-                                          width="16"
-                                          height="16"
-                                          viewBox="0 0 16 16"
-                                          fill="none"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <circle
-                                            cx="8"
-                                            cy="8"
-                                            r="8"
-                                            fill="#45B649"
-                                          />
-                                          <path
-                                            d="M5.11438 8.11438L7 10L10.7712 6.22876"
-                                            stroke="white"
-                                            strokeWidth="1.6"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                          />
-                                        </svg>
-                                      </div>
-                                      <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
-                                        Origination Fee:
-                                        {plan.origination_fee.toFixed(0)}%
-                                      </p>
-                                    </li>
-
-                                    <li className="flex items-center">
-                                      <div>
-                                        <svg
-                                          width="16"
-                                          height="16"
-                                          viewBox="0 0 16 16"
-                                          fill="none"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                          <circle
-                                            cx="8"
-                                            cy="8"
-                                            r="8"
-                                            fill="#45B649"
-                                          />
-                                          <path
-                                            d="M5.11438 8.11438L7 10L10.7712 6.22876"
-                                            stroke="white"
-                                            strokeWidth="1.6"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                          />
-                                        </svg>
-                                      </div>
-                                      <p className="ltr:pl-3 rtl:pr-3 text-black">
-                                        Origination Amount:
-                                        {plan.origination_amount.toFixed(0)}%
-                                      </p>
-                                    </li>
-                                  </>
-                                ) : null}
-                              </div>
-
-                              <li className="flex items-center">
-                                <div>
-                                  <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <circle
-                                      cx="8"
-                                      cy="8"
-                                      r="8"
-                                      fill="#45B649"
-                                    />
-                                    <path
-                                      d="M5.11438 8.11438L7 10L10.7712 6.22876"
-                                      stroke="white"
-                                      strokeWidth="1.6"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                    />
-                                  </svg>
-                                </div>
-                                <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
-                                  BORRO Rate: {plan.borro_rate.toFixed(0)}%
-                                </p>
-                                &nbsp;&nbsp;&nbsp;
-                                <p className="info" title={title}>
-                                  {" "}
-                                </p>
-                                <svg
-                                  width="16"
-                                  height="16"
-                                  fill="#ebebeb"
-                                  version="1.1"
-                                  id="Capa_1"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  //   xmlns:xlink="http://www.w3.org/1999/xlink"
-                                  viewBox="0 0 416.979 416.979"
-                                  //   xml:space="preserve"
-                                  stroke="#ebebeb"
-                                >
-                                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                                  <g
-                                    id="SVGRepo_tracerCarrier"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  ></g>
-                                  <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                      <path
-                                        d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85 c81.369,81.47,213.378,81.551,294.849,0.181C437.293,274.636,437.375,142.626,356.004,61.156z M237.6,340.786 c0,3.217-2.607,5.822-5.822,5.822h-46.576c-3.215,0-5.822-2.605-5.822-5.822V167.885c0-3.217,2.607-5.822,5.822-5.822h46.576 c3.215,0,5.822,2.604,5.822,5.822V340.786z M208.49,137.901c-18.618,0-33.766-15.146-33.766-33.765 c0-18.617,15.147-33.766,33.766-33.766c18.619,0,33.766,15.148,33.766,33.766C242.256,122.755,227.107,137.901,208.49,137.901z "
-                                        onClick={() =>
-                                          toggleTitleVisibility(index)
-                                        }
-                                      ></path>
-                                    </g>
-                                  </g>
-                                </svg>
-                                <div
-                                  className={`title-container absolute h-[17rem] w-[19rem]  bg-white text-gray shadow-lg p-8 leading-7 rounded-md ${
-                                    selectedPlanIndex !== index ? "hidden" : ""
-                                  } `}
-                                >
-                                  <button
-                                    className="close-button absolute top-0 right-0 p-2"
-                                    // (click)="closeTitleContainer(index)"
-                                    onClick={() => closeTitleContainer(index)}
-                                  >
+              <div className=" relative grid grid-cols-1 gap-[30px] md:grid-cols-1 lg:grid-cols-1 px-[1.3rem] z-10 ">
+                <Swiper
+                  className="w-full py-4"
+                  slidesPerView="auto"
+                  speed={2500}
+                  loop={false}
+                  spaceBetween={30}
+                  navigation={true}
+                  modules={[Navigation]}
+                  breakpoints={{
+                    320: {
+                      slidesPerView: 1,
+                    },
+                    600: {
+                      slidesPerView: 2,
+                    },
+                    1000: {
+                      slidesPerView: 3,
+                    },
+                    1600: {
+                      slidesPerView: 3,
+                    },
+                  }}
+                >
+                  {response?.plans?.map((plan: any, index) => (
+                    <>
+                      <div key={index}>
+                        <SwiperSlide>
+                          <div
+                            className="relative group flex flex-col rounded-lg border-4 border-primary bg-white p-6 px-4 transition hover:bg-primary  dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.01] dark:to-transparent dark:drop-shadow-none dark:hover:border-gray-dark dark:hover:bg-gray-dark sm:px-6"
+                            data-aos="fade-up"
+                            data-aos-duration="1000"
+                          >
+                            <div className="mb-8">
+                              <h3 className="text-[22px] font-black text-black dark:text-white">
+                                {plan?.term_table}
+                              </h3>
+                            </div>
+                            <div>
+                              <ul className="space-y-5 pb-7 text-sm font-bold group-hover:text-white">
+                                <li className="flex items-center">
+                                  <div>
                                     <svg
-                                      className="w-4 h-4"
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
                                       xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 20 20"
-                                      fill="#5991f5"
                                     >
+                                      <circle
+                                        cx="8"
+                                        cy="8"
+                                        r="8"
+                                        fill="#45B649"
+                                      />
                                       <path
-                                        fillRule="evenodd"
-                                        d="M14.348 14.849l-4.95-4.95 4.95-4.95a.8.8 0 10-1.132-1.132l-4.95 4.95-4.95-4.95a.8.8 0 00-1.132 1.132l4.95 4.95-4.95 4.95a.8.8 0 101.132 1.132l4.95-4.95 4.95 4.95a.8.8 0 001.132-1.132z"
-                                        clipRule="evenodd"
+                                        d="M5.11438 8.11438L7 10L10.7712 6.22876"
+                                        stroke="white"
+                                        strokeWidth="1.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
                                       />
                                     </svg>
-                                  </button>
-                                  {title}
+                                  </div>
+                                  <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
+                                    Premium Value:{" "}
+                                    {plan?.ltv_multiplier.toFixed(0)}%
+                                  </p>
+                                </li>
+
+                                <li className="flex items-center">
+                                  <div>
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <circle
+                                        cx="8"
+                                        cy="8"
+                                        r="8"
+                                        fill="#45B649"
+                                      />
+                                      <path
+                                        d="M5.11438 8.11438L7 10L10.7712 6.22876"
+                                        stroke="white"
+                                        strokeWidth="1.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                    </svg>
+                                  </div>
+                                  <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
+                                    Gross Proceeds: $
+                                    {plan?.gross_proceeds.toFixed(2)}
+                                  </p>
+                                </li>
+
+                                <div>
+                                  {plan.origination_fee > 0 ? (
+                                    <>
+                                      <li className="flex items-center">
+                                        <div>
+                                          <svg
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 16 16"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <circle
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                              fill="#45B649"
+                                            />
+                                            <path
+                                              d="M5.11438 8.11438L7 10L10.7712 6.22876"
+                                              stroke="white"
+                                              strokeWidth="1.6"
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
+                                            />
+                                          </svg>
+                                        </div>
+                                        <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
+                                          Origination Fee:
+                                          {plan.origination_fee.toFixed(0)}%
+                                        </p>
+                                      </li>
+
+                                      <li className="flex items-center">
+                                        <div>
+                                          <svg
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 16 16"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <circle
+                                              cx="8"
+                                              cy="8"
+                                              r="8"
+                                              fill="#45B649"
+                                            />
+                                            <path
+                                              d="M5.11438 8.11438L7 10L10.7712 6.22876"
+                                              stroke="white"
+                                              strokeWidth="1.6"
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
+                                            />
+                                          </svg>
+                                        </div>
+                                        <p className="ltr:pl-3 rtl:pr-3 text-black">
+                                          Origination Amount:
+                                          {plan.origination_amount.toFixed(0)}%
+                                        </p>
+                                      </li>
+                                    </>
+                                  ) : null}
                                 </div>
-                              </li>
-                            </ul>
-                            <div className="mt-auto border-t-[3px] border-[#BBC0D0]/50 pt-7">
-                              <div className="mb-3 flex flex-col items-center justify-center sm:flex-row ">
-                                <Link
-                                  href={`/congratulations/${
-                                    response.user_exists == "false"
-                                      ? "nu"
-                                      : "ou"
-                                  }/${optionLookingFor}/${id}`}
-                                >
-                                  <button
-                                    onClick={() => choosePlan(plan)}
-                                    className="btn text-l text-white group-hover:bg-white group-hover:text-primary dark:text-black xl:w-44 rounded-full"
+
+                                <li className="flex items-center">
+                                  <div>
+                                    <svg
+                                      width="16"
+                                      height="16"
+                                      viewBox="0 0 16 16"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                      <circle
+                                        cx="8"
+                                        cy="8"
+                                        r="8"
+                                        fill="#45B649"
+                                      />
+                                      <path
+                                        d="M5.11438 8.11438L7 10L10.7712 6.22876"
+                                        stroke="white"
+                                        strokeWidth="1.6"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                    </svg>
+                                  </div>
+                                  <p className="ltr:pl-3 rtl:pr-3 pl-3 text-black">
+                                    BORRO Rate: {plan.borro_rate.toFixed(0)}%
+                                  </p>
+                                  &nbsp;&nbsp;&nbsp;
+                                  <p className="info" title={title}>
+                                    {" "}
+                                  </p>
+                                  <svg
+                                    width="16"
+                                    height="16"
+                                    fill="#ebebeb"
+                                    version="1.1"
+                                    id="Capa_1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    //   xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    viewBox="0 0 416.979 416.979"
+                                    //   xml:space="preserve"
+                                    stroke="#ebebeb"
                                   >
-                                    Proceed
-                                    {proceed && (
+                                    <g
+                                      id="SVGRepo_bgCarrier"
+                                      strokeWidth="0"
+                                    ></g>
+                                    <g
+                                      id="SVGRepo_tracerCarrier"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    ></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                      <g>
+                                        <path
+                                          d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85 c81.369,81.47,213.378,81.551,294.849,0.181C437.293,274.636,437.375,142.626,356.004,61.156z M237.6,340.786 c0,3.217-2.607,5.822-5.822,5.822h-46.576c-3.215,0-5.822-2.605-5.822-5.822V167.885c0-3.217,2.607-5.822,5.822-5.822h46.576 c3.215,0,5.822,2.604,5.822,5.822V340.786z M208.49,137.901c-18.618,0-33.766-15.146-33.766-33.765 c0-18.617,15.147-33.766,33.766-33.766c18.619,0,33.766,15.148,33.766,33.766C242.256,122.755,227.107,137.901,208.49,137.901z "
+                                          onClick={() =>
+                                            toggleTitleVisibility(index)
+                                          }
+                                        ></path>
+                                      </g>
+                                    </g>
+                                  </svg>
+                                  <div
+                                    className={`title-container absolute h-[17rem] w-[19rem]  bg-white text-gray shadow-lg p-8 leading-7 rounded-md ${
+                                      selectedPlanIndex !== index
+                                        ? "hidden"
+                                        : ""
+                                    } `}
+                                  >
+                                    <button
+                                      className="close-button absolute top-0 right-0 p-2"
+                                      // (click)="closeTitleContainer(index)"
+                                      onClick={() => closeTitleContainer(index)}
+                                    >
                                       <svg
-                                        aria-hidden="true"
-                                        role="status"
-                                        className="inline w-4 h-4 ml-3 mr-3 text-white animate-spin"
-                                        viewBox="0 0 100 101"
-                                        fill="none"
+                                        className="w-4 h-4"
                                         xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="#5991f5"
                                       >
                                         <path
-                                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                          fill="#E5E7EB"
-                                        />
-                                        <path
-                                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                          fill="currentColor"
+                                          fillRule="evenodd"
+                                          d="M14.348 14.849l-4.95-4.95 4.95-4.95a.8.8 0 10-1.132-1.132l-4.95 4.95-4.95-4.95a.8.8 0 00-1.132 1.132l4.95 4.95-4.95 4.95a.8.8 0 101.132 1.132l4.95-4.95 4.95 4.95a.8.8 0 001.132-1.132z"
+                                          clipRule="evenodd"
                                         />
                                       </svg>
-                                    )}
-                                  </button>
-                                </Link>
+                                    </button>
+                                    {title}
+                                  </div>
+                                </li>
+                              </ul>
+                              <div className="mt-auto border-t-[3px] border-[#BBC0D0]/50 pt-7">
+                                <div className="mb-3 flex flex-col items-center justify-center sm:flex-row ">
+                                  <Link
+                                    href={`/congratulations/${
+                                      response.user_exists == "false"
+                                        ? "nu"
+                                        : "ou"
+                                    }/${optionLookingFor}/${id}`}
+                                  >
+                                    <button
+                                      onClick={() => choosePlan(plan)}
+                                      className="btn text-l text-white group-hover:bg-white group-hover:text-primary dark:text-black xl:w-44 rounded-full"
+                                    >
+                                      Proceed
+                                      {proceed && (
+                                        <svg
+                                          aria-hidden="true"
+                                          role="status"
+                                          className="inline w-4 h-4 ml-3 mr-3 text-white animate-spin"
+                                          viewBox="0 0 100 101"
+                                          fill="none"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                          <path
+                                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                            fill="#E5E7EB"
+                                          />
+                                          <path
+                                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                            fill="currentColor"
+                                          />
+                                        </svg>
+                                      )}
+                                    </button>
+                                  </Link>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </SwiperSlide>
-                    </div>
-                  </>
-                ))}
-              </Swiper>
+                        </SwiperSlide>
+                      </div>
+                    </>
+                  ))}
+                </Swiper>
+              </div>
             </div>
-          </div>
-        </section>
-      </>
+          </section>
+        </>
+      )}
     </div>
   );
 };

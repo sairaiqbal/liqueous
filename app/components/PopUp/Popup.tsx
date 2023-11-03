@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import SearchBar from "@/app/components/SearchBar/SearchBar";
-const Popup = ({setIsOpen}) => {
-    
-    const handleClick = () =>{
-        setIsOpen(false);
-    }
+const Popup = ({ setIsOpen }) => {
+  const handleClick = () => {
+    setIsOpen(false);
+  };
   return (
     <div
       id="popup-container"
@@ -87,7 +86,7 @@ const Popup = ({setIsOpen}) => {
           GET AN ESTIMATE?
         </div>
         <p className="text-center text-[#B1B1B1] mt-2">
-          Search for a Company or Symbol, and you will get an estimate of{" "}
+          Search for a company or symbol, and you will get an estimate of{" "}
         </p>
         <p className="text-center text-[#B1B1B1] mb-2">
           the maximum amount available.
@@ -124,11 +123,11 @@ const Popup = ({setIsOpen}) => {
             </div>
           </div>
         </div> */}
-        <SearchBar showButton={false}/>
+        <SearchBar showButton={false} />
         <div className="text-[#777E90] text-base font-semibold  text-center mt-6 mb-4 p-4">
-          Call our Toll Free Number{" "}
+          Call our toll free number{" "}
           <a href="tel:+18665303357" className="text-primary underline">
-            (+1)866-530-3357
+            866-530-3357
           </a>{" "}
           for further assistance.
         </div>

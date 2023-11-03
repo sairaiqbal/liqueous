@@ -176,7 +176,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
 
           const formatShares = estimateRes.estimated_loan;
           console.log(new Intl.NumberFormat("en-US").format(formatShares));
-          const shares = new Intl.NumberFormat("en-US").format(formatShares);
+          const shares = new Intl.NumberFormat("en-IN").format(formatShares);
           setEstimateValue(shares);
           setValue("estimated_loan", shares);
         
@@ -188,13 +188,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         }
        
       }
-      // const apiRes = await requestLoan(formData);
-      // setShowForm(false);
-      // setRes(apiRes);
-
-      // const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
-      // setEstimateValue(estimateRes.estimated_loan);
-      // setValue("estimated_loan", estimateRes.estimated_loan);
+  
     } else {
       if (data.who === "for someone else") {
         agentFee = data.agent_fee;
@@ -318,6 +312,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           render={({ field }) => (
                             <input
                               {...field}
+                              readOnly
                               type="text"
                               name="stock"
                               autoComplete="none"
@@ -571,6 +566,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                         type="button"
                         onClick={() => {
                             setShowForm(true);
+                            setConfirm(false);
                         }}
                       >
                         Go Back
