@@ -82,3 +82,9 @@ const LegalNotice = () => {
 };
 
 export default LegalNotice;
+export function generateMetadata() {
+  return {
+    title: "Legal Notice | Liqueous",
+    description: "Legal Notice Page",
+  };
+}

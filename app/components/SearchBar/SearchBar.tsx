@@ -21,13 +21,10 @@ const SearchBar = ({ showButton }) => {
   const [searchResults, setSearchResults] = useState<SearchResults[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-    
 
   const handleClick = () => {
     setIsOpen(true);
-   
   };
-
 
   const fetchData = async (value: string) => {
     // Implement your API fetch logic here based on the input value
@@ -44,7 +41,9 @@ const SearchBar = ({ showButton }) => {
   };
 
   const onBlurTickerSearch = () => {
-    setIsDropdownOpen(false); // Close the dropdown when input is blurred
+    setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 200); // You can adjust the delay (e.g., 200ms) as needed
   };
 
   const handleInputChange = async (value: string) => {
@@ -60,7 +59,6 @@ const SearchBar = ({ showButton }) => {
       <div className="relative max-w-[600px] mr-auto ml-auto">
         <div className="relative text-start p-[5px]  min-w-[300px] lg:w-full ">
           <div className="pl-4 items-center  ">
-            
             <Controller
               name="tickerSearch"
               control={control}
@@ -92,47 +90,48 @@ const SearchBar = ({ showButton }) => {
                 ></path>
               </svg>
             </div>
-          
 
-          {isDropdownOpen && (
-            <div className="absolute top-16 z-10 w-full text-black font-bold outline-none dark:bg-gray-dark max-h-48 overflow-auto">
-              <ul className="py-1">
-                {searchResults.map((result, index) => (
-                  <Link
-                    key={index}
-                    href={`/landing/${result.exchange_code}/${result.code}`}
-                  >
-                    <li className="px-4 py-2 mb-1 rounded-2xl text-left cursor-pointer bg-white text-black hover:text-primary  mr-3">
-                      <div className="flex justify-between ">
-                        <span className="font-bold min-w-[150px]">
-                          {result.exchange_code}
-                        </span>
-                        <span className="font-thin whitespace-nowrap text-clip overflow-hidden">
-                          {result.name}
-                        </span>
-                      </div>
-                      <div className="flex justify-between ">
-                        <div className="font-thin text-sm">{result.code}</div>
-                        <span className="font-thin italic text-sm">
-                          {result.exchange_name}
-                        </span>
-                      </div>
-                    </li>
-                  </Link>
-                ))}
-              </ul>
-            </div>
-          )}
+            {isDropdownOpen && (
+              <div className="absolute top-16 z-10 w-full text-black font-bold outline-none dark:bg-gray-dark max-h-48 overflow-auto">
+                <ul className="py-1">
+                  {searchResults.map((result, index) => (
+                    <Link
+                      key={index}
+                      href={`/landing/${result.exchange_code}/${result.code}`}
+                    >
+                      <li className="px-4 py-2 mb-1 rounded-2xl text-left cursor-pointer bg-white text-black hover:text-primary  mr-3">
+                        <div className="flex justify-between ">
+                          <span className="font-bold min-w-[150px]">
+                            {result.exchange_code}
+                          </span>
+                          <span className="font-thin whitespace-nowrap text-clip overflow-hidden">
+                            {result.name}
+                          </span>
+                        </div>
+                        <div className="flex justify-between ">
+                          <div className="font-thin text-sm">{result.code}</div>
+                          <span className="font-thin italic text-sm">
+                            {result.exchange_name}
+                          </span>
+                        </div>
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
-      {showButton && ( 
-        <button className="btn mx-auto mt-10 block w-fit mr-auto ml-auto bg-primary text-white rounded-full" onClick={handleClick}>
+      {showButton && (
+        <button
+          className="btn mx-auto mt-10 block w-fit mr-auto ml-auto bg-primary text-white rounded-full"
+          onClick={handleClick}
+        >
           Get A QUOTE TODAY
         </button>
-        
       )}
-       {isOpen && <Popup setIsOpen={setIsOpen}/>}
+      {isOpen && <Popup setIsOpen={setIsOpen} />}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import React from "react";
-import LineChart from "./lineChart";
+import LineChart from "./applyLoan";
 // import getTickerDetailById from "@/app/Utils/getTickerDetailById";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -157,7 +157,7 @@ const LoadingError: React.FC<LoadingErrorProps> = ({ params }) => {
                 <div className="flex flex-col flex-auto">
                   {/* <app-line-chart className="flex-auto w-full h-full" [data]="symbolData.series[0].data">
                                 </app-line-chart> */}
-                  <LineChart data={params.series[0].data} />
+               {/*}   <LineChart data={params.series[0].data} />*/}
                 </div>
               </div>
             </div>

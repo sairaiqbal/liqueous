@@ -14,10 +14,11 @@ interface ApiResponse {
   min_val: number;
   id: string;
   max_val: number;
+  step: number;
 }
 interface QuoteFormProps {
   setConfirm: (value: boolean) => void;
-  setResponse: (value: { id: string; plans: [], user_exists: ""}) => void;
+  setResponse: (value: { id: string; plans: []; user_exists: "" }) => void;
   setId: (value: string) => void;
   setOptionLookingFor: (value: string) => void;
 
@@ -58,7 +59,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
   const [searchInput, setSearchInput] = useState("");
   const [res, setRes] = useState<ApiResponse | null>(null);
   const [estimateValue, setEstimateValue] = useState("");
-  //   const [sliderValue, setSliderValue] = useState(0);
+  const [sliderValue, setSliderValue] = useState(0);
   const [radioSelected, setRadioSelected] = useState(false);
   const [showAgentFee, setShowAgentFee] = useState(false);
   const filteredCountries = countries.filter((country) =>
@@ -99,8 +100,6 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
     if (name != null || name != undefined) {
       setQueryParams(true);
     }
-
-    
   }, [ticker]);
 
   const onSubmit = async (data: any) => {
@@ -131,11 +130,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         const apiRes = await requestLoan(formData);
         setShowForm(false);
         setRes(apiRes);
-        if ( data.option_looking_for !== "EquityLine"){
-          console.log ('option',data.option_looking_for)
-        const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
-        setEstimateValue(estimateRes.estimated_loan);
-        setValue("estimated_loan", estimateRes.estimated_loan);
+        if (data.option_looking_for !== "EquityLine") {
+          console.log("option", data.option_looking_for);
+          const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
+          setEstimateValue(estimateRes.estimated_loan);
+          // console.log("2nd form estimate" , estimateValue);
+          setValue("estimated_loan", estimateRes.estimated_loan);
         }
       } else if (queryParams) {
         delete data.who;
@@ -171,11 +171,17 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         const apiRes = await requestLoan(formData);
         setShowForm(false);
         setRes(apiRes);
-        if ( data.option_looking_for || pathnameParts[4] !== "EquityLine"){
-        const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
-        setEstimateValue(estimateRes.estimated_loan);
-        setValue("estimated_loan", estimateRes.estimated_loan);
-        }
+        if (data.option_looking_for || pathnameParts[4] !== "EquityLine") {
+          const estimateRes = await estimateLoan(apiRes.id, apiRes.min_val);
+
+          const formatShares = estimateRes.estimated_loan;
+          console.log(new Intl.NumberFormat("en-US").format(formatShares));
+          const shares = new Intl.NumberFormat("en-US").format(formatShares);
+          setEstimateValue(shares);
+          setValue("estimated_loan", shares);
+        
+      }
+    
         const elementToScrollTo = document.getElementById("applyLoanForm");
         if (elementToScrollTo) {
           elementToScrollTo.scrollIntoView({ behavior: "smooth" });
@@ -193,46 +199,53 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
       if (data.who === "for someone else") {
         agentFee = data.agent_fee;
       }
-      if(data.option_looking_for || pathnameParts[4] !== "EquityLine") {
-      const formData = {
-        estimated_loan: data.estimated_loan,
-        requested_shares: data.requested_shares.toString(),
-        who: data.who,
-        agent_fee: agentFee,
-        id: res?.id,
-      };
-      console.log("who is ", formData);
-      const apiRess = await confirmShares(formData);
-      setConfirm(true);
-      setResponse(apiRess);
-      // console.log("Form 2 data :",apiRess);
-      setId(apiRess.id);
-    }
-    else {
-      const formData = {
-        who: data.who,
-        agent_fee: agentFee,
-        id: res?.id,
-        option_looking_for: data.option_looking_for,
-        stock: data.stock,
-      };
-      console.log("who is ", formData);
-      const apiRess = await confirmEquityLine(formData);
-      setConfirm(false);
-      setResponse(apiRess);
-      console.log("equi",apiRess.user_exists == "false" ? "nu" : "ou")
-      router.push(`/congratulations/${apiRess.user_exists == "false" ? "nu" : "ou"}/${pathnameParts[4]}/${formData.id}`)
-      // console.log("Form 2 data :",apiRess);
-      setId(apiRess.id);
-    }
+      if (data.option_looking_for || pathnameParts[4] !== "EquityLine") {
+        const formData = {
+          estimated_loan: data.estimated_loan,
+          requested_shares: data.requested_shares.toString(),
+          who: data.who,
+          agent_fee: agentFee,
+          id: res?.id,
+        };
+        console.log("who is ", formData);
+        const apiRess = await confirmShares(formData);
+        setConfirm(true);
+        setResponse(apiRess);
+        // console.log("Form 2 data :",apiRess);
+        setId(apiRess.id);
+      } else {
+        const formData = {
+          who: data.who,
+          agent_fee: agentFee,
+          id: res?.id,
+          option_looking_for: data.option_looking_for,
+          stock: data.stock,
+        };
+        console.log("who is ", formData);
+        const apiRess = await confirmEquityLine(formData);
+        setConfirm(false);
+        setResponse(apiRess);
+        console.log("equi", apiRess.user_exists == "false" ? "nu" : "ou");
+        router.push(
+          `/congratulations/${apiRess.user_exists == "false" ? "nu" : "ou"}/${
+            pathnameParts[4]
+          }/${formData.id}`
+        );
+        // console.log("Form 2 data :",apiRess);
+        setId(apiRess.id);
+      }
     }
   };
 
   const handleSliderChange = (value: number) => {
     setValue("requested_shares", value);
+    setSliderValue(value);
     estimateLoan(res?.id || "", value + "")
       .then((response) => {
-        setValue("estimated_loan", response.estimated_loan); // Assuming the response contains the value
+        const formatShares = response.estimated_loan;
+        const shares = new Intl.NumberFormat("en-US").format(formatShares);
+        // setEstimateValue(shares);
+        setValue("estimated_loan", shares); // Assuming the response contains the value
       })
       .catch((error) => {
         setEstimateValue("Error"); // Handle the error appropriately
@@ -284,11 +297,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                 // action={handleSubmit}
                 className="rounded-3xl bg-white px-8 py-12 dark:bg-gray-dark  w-11/12 mt-10 shadow-lg"
               >
-                <h3 className="font-bold text-black text-center mb-4 text-lg px-4">
-                  Get your free quote and tap into your capital today!
-                </h3>
                 {showForm ? (
                   <>
+                    <h3 className="font-bold text-black text-center mb-4 text-lg px-4">
+                      Get your free quote and tap into your capital today!
+                    </h3>
+
                     <div className="">
                       <div className="relative mb-6">
                         <label
@@ -549,90 +563,24 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                         </div>
                       ) : null}
                     </div>
-
-                    {/* <div className="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
-                      <div className="flex justify-center">
-                        <button
-                          type="submit"
-                          className={`btn bg-primary px-12 capitalize text-white dark:bg-white dark:text-black dark:hover:bg-secondary rounded-full 
-  ${isValid ? "bg-primary" : "bg-gray"}`}
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <span>Submitting</span>
-                              <svg
-                                aria-hidden="true"
-                                role="status"
-                                className="inline w-4 h-4 mr-3 ml-3 text-white animate-spin"
-                                viewBox="0 0 100 101"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                                  fill="#E5E7EB"
-                                />
-                                <path
-                                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </>
-                          ) : (
-                            "Submit Query"
-                          )}
-                        </button>
-                      </div>
-                    </div> */}
                   </>
                 ) : (
                   <>
+                  <button
+                        className="btn btn-primary text-white"
+                        type="button"
+                        onClick={() => {
+                            setShowForm(true);
+                        }}
+                      >
+                        Go Back
+                      </button>
+                      <h3 className="font-bold text-black text-left my-4 text-lg">
+                        {pathnameParts[4] !== "EquityLine" ? (
+                          <span>Choose shares that suits you best</span>
+                        ) : null}
+                      </h3>
                     <div className="mt-10">
-                      <div className="relative mb-6">
-                        <label
-                          htmlFor="who"
-                          className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
-                        >
-                          Are you applying for yourself or someone else?
-                        </label>
-                            <select
-                              className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
-                              {...register("who")}
-                              onChange={handleWhoChange}
-                              required
-                            >
-                              <option value="my self">Myself</option>
-                              <option value="for someone else">
-                                For someone else
-                              </option>
-                            </select>
-                      </div>
-                      {/* <div className="relative">
-                        <label
-                          htmlFor="agent_fee"
-                          className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
-                        >
-                          Origination Fee (%)
-                        </label>
-                        <select
-                          id="agent_fee"
-                          name="agent_fee"
-                          className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12 "
-                        >
-                          <option value="0">0</option>
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
-                          <option value="7">7</option>
-                          <option value="8">8</option>
-                          <option value="9">9</option>
-                          <option value="10">10</option>
-                        </select>
-                      </div> */}
                       {showAgentFee && (
                         <div className="relative">
                           <label
@@ -663,52 +611,109 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                             
                         </div>
                       )}
-                      {pathnameParts[4] != "EquityLine" ? ( 
-                      <div>
-                        <div className="relative">
-                          <label
-                            htmlFor="amount"
-                            className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
-                          >
-                            Amount ($)
-                          </label>
-                          
-                              <input
-                                type="text"
-                                // value={inputValue}
-                                className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus-border-secondary ltr:pr-12 rtl:pl-12"
-                                {...register("estimated_loan")}
-                              />
-                           
+                      {pathnameParts[4] != "EquityLine" ? (
+                        <div>
+                          <div className="relative">
+                            <label
+                              htmlFor="amount"
+                              className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
+                            >
+                              Choose Shares
+                            </label>
 
-                          
-                              <input
-                                type="range"
-                                min={res?.min_val || 0}
-                                max={res?.max_val || 1000}
-                                step={100}
-                                // value={sliderValue}
-                                className="w-full h-2 mt-4 mb-6 bg-gray rounded-lg appearance-none cursor-pointer"
-                                {...register("requested_shares", { required: true })}
-                                onChange={(e) => {
-                                  const sliderValue = parseInt(
-                                    e.target.value,
-                                    10
-                                  ); // Get the value directly from e.target
-                                  handleSliderChange(sliderValue); // Pass the slider value to your function
-                                }}
+                            <Controller
+                              name="requested_shares"
+                              control={control}
+                              defaultValue={0} // Set your default slider value here
+                              render={({ field }) => (
+                                <input
+                                  type="range"
+                                  min={res?.min_val || 0}
+                                  max={res?.max_val || 1000}
+                                  step={res?.step || 10000}
+                                  // value={sliderValue}
+                                  className="w-full h-2 mt-4 mb-6 bg-gray rounded-lg appearance-none cursor-pointer"
+                                  {...field}
+                                  onChange={(e) => {
+                                    const newValue = parseInt(
+                                      e.target.value,
+                                      10
+                                    );
+                                    // setSliderValue(newValue); // Pass the new value to setSliderValue
+                                    handleSliderChange(newValue); // Pass the new value to your function
+                                  }}
+                                />
+                              )}
+                            />
+                            <div className="flex justify-between mt-[-16px]">
+                              <div className="text-left">
+                                <p>{res?.min_val.toFixed(0)}</p>
+                                <p>Min Shares</p>
+                              </div>
+                              <div className="text-left font-bold">
+                                <p>
+                                  {sliderValue?.toLocaleString("en-US") ||
+                                    res?.min_val}
+                                </p>
+                                <p>Shares</p>
+                              </div>
+                              <div className="text-right">
+                                <p>{res?.max_val.toFixed(0)}</p>
+                                <p>Max Shares</p>
+                              </div>
+                            </div>
+                            <div className="relative mt-8">
+                              <label
+                                htmlFor="amount"
+                                className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
+                              >
+                                Estimated Amount ($)
+                              </label>
+                              <Controller
+                                name="estimated_loan"
+                                control={control}
+                                defaultValue={""} // Set your default value here
+                                render={({ field }) => (
+                                  <input
+                                    type="text"
+                                    // value={inputValue}
+                                    className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus-border-secondary ltr:pr-12 rtl:pl-12"
+                                    {...field}
+                                  />
+                                )}
                               />
-                            
-                        </div>
-
-                        <div className="flex justify-between">
-                          <div className="text-left">Min</div>
-                          <div className="text-left font-bold">
-                            {res?.min_val || "Loading..."}
+                            </div>
                           </div>
-                          <div className="text-right">Max</div>
                         </div>
-                      </div> ) : null }
+                      ) : null}
+                    </div>
+                    <div className="relative mb-6">
+                      <div className="relative mt-8 p-8 bg-[#f3f3fe] rounded-3xl">
+                        <label
+                          htmlFor="who"
+                          className="block text-black text-base font-bold mb-2 dark:bg-[#101626] dark:text-white"
+                        >
+                          Are you applying for yourself or someone else?
+                        </label>
+                        <Controller
+                          name="who"
+                          control={control}
+                          // defaultValue="my self" // Set the default value
+                          render={({ field }) => (
+                            <select
+                              className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
+                              {...field}
+                              onChange={handleWhoChange}
+                              required
+                            >
+                              <option value="my self">Myself</option>
+                              <option value="for someone else">
+                                For someone else
+                              </option>
+                            </select>
+                          )}
+                        />
+                      </div>
                     </div>
                     {/* <div className="mt-10 text-center ltr:lg:text-right rtl:lg:text-left">
                       <div className="flex justify-center">

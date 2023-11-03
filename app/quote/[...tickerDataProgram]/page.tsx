@@ -3,7 +3,7 @@ import getTickerDetailById from "@/app/Utils/getTickerDetailById";
 // import LoadingError from "./loadingError";
 import Link from "next/link";
 // import QuoteForm from "./quoteForm";
-import ChartForm from "./chartForm";
+import ApplyLoan from "./applyLoan";
 
 interface QuoteProps {
   params: {
@@ -22,7 +22,7 @@ const Quote: React.FC<QuoteProps> = async ({ params }) => {
   return (
 
     <>
-    <ChartForm params={tickerDetail}/>
+    <ApplyLoan params={tickerDetail}/>
       {/* <div>I am quote page</div> */}
       {/* <div className="lg:flex  w-full bg-gradient-to-t from-white/[55%] to-transparent ">
         <section className=" lg:w-2/3 w-full  py-8 dark:bg-none">
@@ -489,3 +489,9 @@ const Quote: React.FC<QuoteProps> = async ({ params }) => {
 };
 
 export default Quote;
+export function generateMetadata() {
+  return {
+    title: "Quote | Liqueous",
+    description: "Quote Page",
+  };
+}

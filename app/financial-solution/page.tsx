@@ -1,17 +1,9 @@
-"use client"
-import Aos from 'aos';
-import Link from 'next/link'
-import React, { useEffect } from 'react'
-import ApplyNowButton from '../components/ApplyNowButton';
 
-const  FinancialSolutions= () => {
-  useEffect(() => {
-    // Initialize AOS once the app is mounted
-    Aos.init({
-      duration: 1000, // Animation duration
-      once: true, // Only animate once
-    });
-  }, []);
+import React from 'react'
+import ApplyNowButton from '../components/ApplyNowButton';
+import FinancialSolution from './financialSolution';
+const  Page= () => {
+ 
   return (
     <div>
       <div className="overflow-x-hidden  bg-white dark:bg-gray-dark">
@@ -79,7 +71,7 @@ const  FinancialSolutions= () => {
 
 
             </div>
-            <div className="grid gap-12 sm:grid-cols-1 lg:grid-cols-2">
+            {/* <div className="grid gap-12 sm:grid-cols-1 lg:grid-cols-2">
                 <div data-aos="fade-up" data-aos-duration="1000" className="flex lg:justify-end justify-center">
                     <div className="h-full lg:w-3/4 w-full overflow-hidden group rounded-3xl border-2 border-white bg-white p-6 transition duration-500 hover:border-secondary hover:bg-secondary/20 dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary"
                         style={{boxShadow: "-20px 30px 70px rgba(219, 222, 225, 0.4)"}}>
@@ -166,7 +158,8 @@ const  FinancialSolutions= () => {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
+            <FinancialSolution/>
         </div>
     </section>
     <section>
@@ -330,4 +323,10 @@ const  FinancialSolutions= () => {
   )
 }
 
-export default FinancialSolutions
+export default Page
+export function generateMetadata() {
+    return {
+      title: "Financial Solutions | Liqueous",
+      description: "Financial Solutions Page",
+    };
+  }

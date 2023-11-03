@@ -621,3 +621,4 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
 };
 
 export default ChartForm;
+
