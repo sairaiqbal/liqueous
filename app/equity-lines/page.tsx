@@ -89,7 +89,7 @@ const equityLines = () => {
 
 
 
-        <div className=" container absolute top-0 left-0 z-10 flex justify-center pt-8">
+        <div className=" container absolute top-0 left-0 z-1 flex justify-center pt-8">
             <div
                 className="h-[20rem] lg:w-[60rem] rounded-xl bg-white flex justify-center items-center md:w-[39rem] w-[18rem] dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none   ">
 

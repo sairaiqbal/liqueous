@@ -198,8 +198,9 @@ const ContactForm = () => {
             </label>
             <textarea
               id="message"
-              {...register("message")}
+              {...register("message", { required: true })}
               rows={4}
+              required
               className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-3 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
             ></textarea>
             <div className="flex justify-center text-center">

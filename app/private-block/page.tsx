@@ -402,33 +402,33 @@ const privateBlock = () => {
             </div>
         </div> --> */}
 
-        <div className=" container  flex justify-center lg:my-[100px] my-[50px]  ">
-          <div className="lg:h-[14rem] h-[22rem] lg:w-[60rem] rounded-xl bg-white flex justify-center items-center border-[26px] border-[#eff6ff] w-full dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none   ">
-            <div className="w-11/12  ">
-              <div className="lg:flex justify-between ">
-                <div className="flex items-center justify-center ">
-                  <div className="flex-auto w-65 text-center lg:text-start  ">
-                    <h2 className="text-2xl font-extrabold text-black dark:text-white">
-                      {" "}
-                      Unlock the power of
-                      <span className="text-secondary text-2xl">
-                        {" "}
-                        Private Block
-                      </span>{" "}<br/>
-                      Purchase
-                    </h2>
-                    <h2 className="text-2xl font-extrabold text-black dark:text-white">
-                      {" "}
-                      with <span className="text-primary">Liqueous </span>today.
-                    </h2>
-                  </div>
+<div className=" container  flex justify-center lg:my-[100px] my-[50px]  ">
+            <div
+                className="lg:h-[14rem] h-[22rem] lg:w-[60rem] rounded-xl bg-white flex justify-center items-center border-[26px] border-[#eff6ff] w-full dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none   ">
+
+                <div className="w-11/12  ">
+
+                    <div className="lg:flex justify-between ">
+                        <div className="flex items-center justify-center ">
+                            <div className="flex-auto w-65 text-center lg:text-start  ">
+                                <h2 className="text-2xl font-extrabold text-black dark:text-white"> Unlock the power of
+                                    <span className="text-secondary text-2xl"> Private Block</span> Purchase
+                                </h2>
+                                <h2 className="text-2xl font-extrabold text-black dark:text-white"> with <span
+                                        className="text-primary">Liqueous </span>today.
+
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="flex-auto w-35 flex lg:justify-end justify-center ">
+                            <img src="/assets/images/b-Graphics.svg"/>
+                        </div>
+                    </div>
+
+
+
                 </div>
-                <div className="flex-auto w-35 flex lg:justify-end justify-center ">
-                  <img src="/assets/images/b-Graphics.svg" />
-                </div>
-              </div>
             </div>
-          </div>
         </div>
         {/* <!-- </div> --> */}
       </div>

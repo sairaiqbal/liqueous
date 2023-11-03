@@ -65,7 +65,12 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
     }
   };
 
-  
+  if (confirm){
+    const elementToScrollTo = document.getElementById("plan-cards");
+    if (elementToScrollTo) {
+      elementToScrollTo.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 
   const downloadTermSheet = async () => {
     console.log("download")
@@ -149,7 +154,7 @@ const ChartForm: React.FC<LoadingErrorProps> = ({ params }) => {
   };
 
   return (
-    <div>
+    <div className="overflow-hidden">
      
         <div className="lg:flex  w-full bg-gradient-to-t from-white/[55%] to-transparent ">
           <section className=" lg:w-2/3 w-full  py-8 dark:bg-none">

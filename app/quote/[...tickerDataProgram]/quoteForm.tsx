@@ -176,6 +176,10 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
         setEstimateValue(estimateRes.estimated_loan);
         setValue("estimated_loan", estimateRes.estimated_loan);
         }
+        const elementToScrollTo = document.getElementById("applyLoanForm");
+        if (elementToScrollTo) {
+          elementToScrollTo.scrollIntoView({ behavior: "smooth" });
+        }
        
       }
       // const apiRes = await requestLoan(formData);
@@ -271,8 +275,8 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
   return (
     <>
       {/* {cards !== true && cards} */}
-      <section className=" lg:w-1/3 w-full  py-8 dark:bg-none">
-        <div className="container">
+      <section id="applyLoanForm" className=" lg:w-1/3 w-full  py-8 dark:bg-none">
+        <div  className="container">
           <div className="relative z-10">
             <div className="relative flex lg:justify-start justify-center z-10 ">
               <form
@@ -355,20 +359,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           >
                             Full Name
                           </label>
-                          <Controller
-                            name="name"
-                            control={control}
-                            defaultValue=""
-                            render={({ field }) => (
                               <input
-                                {...field}
+                               {...register("name", { required: true })}
                                 type="text"
                                 autoComplete="none"
-                                required
                                 className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                               />
-                            )}
-                          />
                         </div>
                       )}
                       {!queryParams && (
@@ -379,20 +375,15 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           >
                             Email Address
                           </label>
-                          <Controller
-                            name="email"
-                            control={control}
-                            defaultValue=""
-                            render={({ field }) => (
+                          
                               <input
-                                {...field}
+                               {...register("email", { required: true })}
                                 type="email"
                                 name="email"
                                 required
                                 className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                               />
-                            )}
-                          />
+                           
                         </div>
                       )}
                       {!queryParams && (
@@ -417,20 +408,13 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                             >
                               {selectedCountry.flag} {selectedCountry.dial_code}
                             </button>
-                            <Controller
-                              name="phone"
-                              control={control}
-                              defaultValue=""
-                              render={({ field }) => (
                                 <input
-                                  {...field}
+                                {...register("phone", { required: true })}
                                   type="text"
                                   name="phone"
                                   required
                                   className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                                 />
-                              )}
-                            />
                           </div>
                         </div>
                       )}
@@ -555,20 +539,13 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           >
                             Total Number of shares you own
                           </label>
-                          <Controller
-                            name="shares_total"
-                            control={control}
-                            defaultValue=""
-                            render={({ field }) => (
                               <input
-                                {...field}
+                              {...register("shares_total", { required: true })}
                                 name="shares_total"
                                 type="text"
                                 required
                                 className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
                               />
-                            )}
-                          />
                         </div>
                       ) : null}
                     </div>
@@ -619,14 +596,9 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                         >
                           Are you applying for yourself or someone else?
                         </label>
-                        <Controller
-                          name="who"
-                          control={control}
-                          // defaultValue="my self" // Set the default value
-                          render={({ field }) => (
                             <select
                               className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus:border-secondary ltr:pr-12 rtl:pl-12"
-                              {...field}
+                              {...register("who")}
                               onChange={handleWhoChange}
                               required
                             >
@@ -635,8 +607,6 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                                 For someone else
                               </option>
                             </select>
-                          )}
-                        />
                       </div>
                       {/* <div className="relative">
                         <label
@@ -671,16 +641,12 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           >
                             Origination Fee (%)
                           </label>
-                          <Controller
-                            name="agent_fee"
-                            control={control}
-                            defaultValue="0"
-                            render={({ field }) => (
+                         
                               <select
                                 id="agent_fee"
                                 required
                                 className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus-border-secondary ltr:pr-12 rtl:pl-12"
-                                {...field}
+                                {...register("agent_fee", )}
                               >
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -694,8 +660,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                               </select>
-                            )}
-                          />
+                            
                         </div>
                       )}
                       {pathnameParts[4] != "EquityLine" ? ( 
@@ -707,25 +672,16 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                           >
                             Amount ($)
                           </label>
-                          <Controller
-                            name="estimated_loan"
-                            control={control}
-                            defaultValue={""} // Set your default value here
-                            render={({ field }) => (
+                          
                               <input
                                 type="text"
                                 // value={inputValue}
                                 className="w-full rounded-2xl border-2 border-gray/20 bg-transparent p-4 font-bold outline-none transition focus-border-secondary ltr:pr-12 rtl:pl-12"
-                                {...field}
+                                {...register("estimated_loan")}
                               />
-                            )}
-                          />
+                           
 
-                          <Controller
-                            name="requested_shares"
-                            control={control}
-                            defaultValue={0} // Set your default slider value here
-                            render={({ field }) => (
+                          
                               <input
                                 type="range"
                                 min={res?.min_val || 0}
@@ -733,7 +689,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                                 step={100}
                                 // value={sliderValue}
                                 className="w-full h-2 mt-4 mb-6 bg-gray rounded-lg appearance-none cursor-pointer"
-                                {...field}
+                                {...register("requested_shares", { required: true })}
                                 onChange={(e) => {
                                   const sliderValue = parseInt(
                                     e.target.value,
@@ -742,8 +698,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
                                   handleSliderChange(sliderValue); // Pass the slider value to your function
                                 }}
                               />
-                            )}
-                          />
+                            
                         </div>
 
                         <div className="flex justify-between">
@@ -795,7 +750,7 @@ const QuoteForm: React.FC<QuoteFormProps> = ({
   
   `}
                       //   disabled={isSubmitting}
-                      disabled={!isDirty || !isValid}
+                      disabled={ !isValid}
                     >
                       {showForm ? (
                         isSubmitting ? (

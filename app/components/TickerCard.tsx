@@ -33,7 +33,7 @@ const TickerCard: React.FC<TickerCardProps> = ({ ticker, colorClass }) => {
     //     </Link>
     <>
       <Link href={`/landing/US/${ticker?.name}`}>
-            <div  className={`cursor-pointer  w-[280px] p-[16px]   rounded-full shadow   flex mr-2 ml-2 opacity-70 hover:scale-110 hover:border-primary duration-200 bg-white`} >
+            <div  className={`cursor-pointer  w-[280px] p-1.5  rounded-full shadow   flex mr-2 ml-2 opacity-70 hover:scale-110 hover:border-primary duration-200 bg-white`} >
                 <div className={`${colorClass} mt-0.5 ml-0.5 font-bold text-black rounded-full flex items-center justify-center font-mono text-2xl`} style={{ height: '50px', width: '50px' }}>{ticker?.alphabet}</div>
                 <div className="ml-2">
                     <h5 className="mb-0 text-lg tracking-tight text-black ">{ticker?.name}</h5>

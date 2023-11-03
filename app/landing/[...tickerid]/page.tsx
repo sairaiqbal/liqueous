@@ -33,7 +33,7 @@ const Landing: React.FC<QuoteProps> = async ({ params }) => {
   
 return (
     <>
-        <div className="bg-white">
+        <div className=" overflow-hidden bg-white">
             <DynamicTicker ticker={tickerData} />
             <div>
                 <LandingCards tickerData={tickerData}/>

@@ -24,7 +24,7 @@ const borro = () => {
                   ="">BORRO by Liqueous
                 </h4>
                 <p>Maintain Ownership, Enhance
-                  Liquidity with OurBeneficial</p>
+                  Liquidity with Our Beneficial</p>
                 <p>Ownership Retention
                   Repurchase Option (BORRO)</p>
               </div>

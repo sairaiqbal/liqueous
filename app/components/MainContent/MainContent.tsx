@@ -627,7 +627,7 @@ const MainContent = () => {
 
       <section>
         <div className="container">
-          <div className="heading text-center mb-0">
+          <div className="heading text-center mb-0 pt-2">
             <div className="flex justify-center">
               <svg
                 width="41"
@@ -857,7 +857,7 @@ const MainContent = () => {
             <div className="block max-w-lg lg:p-10 p-6 lg:mt-0 mt-4 bg-white border border-gray-200 rounded-2xl shadow hover:border-secondary  dark:border-white/10 dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.04] dark:to-transparent dark:!shadow-none dark:hover:bg-secondary dark:hover:text-black">
               <p className="font-normal text-gray-700 dark:text-gray-400">
                 {" "}
-                At<span className="text-primary">Liqueous</span>, we believe in
+                At<span className="text-primary"> Liqueous</span>, we believe in
                 empowering our clients with the financial flexibility they need
                 to achieve their goals. Whether you’re looking to invest in a
                 new business venture, purchase a property, or cover unexpected
