@@ -1,17 +1,8 @@
-"use client"
-import AOS from "aos";
-import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import ApplyNowButton from "../components/ApplyNowButton";
+import PrivateBlock from "./privateBlock";
+const Page = () => {
 
-const privateBlock = () => {
-  useEffect(() => {
-    // Initialize AOS once the app is mounted
-    AOS.init({
-      duration: 1000, // Animation duration
-      once: true, // Only animate once
-    });
-  }, []);
   return (
     <div>
       <div className="overflow-x-hidden  bg-white dark:bg-gray-dark">
@@ -56,7 +47,7 @@ const privateBlock = () => {
                     benefits all parties - us, the issuer, and the shareholder.
                   </p>
 
-                  <ApplyNowButton/>
+                  <ApplyNowButton />
                 </div>
               </div>
             </div>
@@ -206,7 +197,7 @@ const privateBlock = () => {
               </p>
               <p> Here’s what makes our Private Block Purchase stand out:</p>
             </div>
-            <div className="grid gap-12 sm:grid-cols-1 lg:grid-cols-2">
+            {/* <div className="grid gap-12 sm:grid-cols-1 lg:grid-cols-2">
               <div
                 data-aos="fade-up"
                 data-aos-duration="1000"
@@ -344,7 +335,8 @@ const privateBlock = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <PrivateBlock />
           </div>
         </section>
         <section className="bg-white/50 dark:bg-black lg:px-14 px-0">
@@ -376,7 +368,7 @@ const privateBlock = () => {
                   </p>
 
                   {/* <!-- <a href="" className="btn mt-10 capitalize text-white">Contact Us</a> --> */}
-                  <ApplyNowButton/>
+                  <ApplyNowButton />
                 </div>
               </div>
               <div className="lg:order-1 mx-auto  order:2 md:mx-0 ">
@@ -414,7 +406,8 @@ const privateBlock = () => {
                       <span className="text-secondary text-2xl">
                         {" "}
                         Private Block
-                      </span>{" "}<br/>
+                      </span>{" "}
+                      <br />
                       Purchase
                     </h2>
                     <h2 className="text-2xl font-extrabold text-black dark:text-white">
@@ -436,7 +429,7 @@ const privateBlock = () => {
   );
 };
 
-export default privateBlock;
+export default Page;
 export function generateMetadata() {
   return {
     title: "Private Block Purchase | Liqueous",
